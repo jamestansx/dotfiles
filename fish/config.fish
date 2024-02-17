@@ -38,7 +38,7 @@ set -q gnupg_SSH_AUTH_SOCK_by || set -l gnupg_SSH_AUTH_SOCK_by 0
 if test $gnupg_SSH_AUTH_SOCK_by -ne $fish_pid
 	set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 end
-gpg-connect-agent updatestartuptty /bye &>/dev/null
+gpg-connect-agent UPDATESTARTUPTTY /bye &>/dev/null
 
 # Emulates vim's cursor shape behaviour
 set fish_cursor_default block
