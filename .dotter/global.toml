@@ -1,2 +1,5 @@
-[shell.files]
+[default.files]
 fish = "~/.config/fish"
+foot = "~/.config/foot"
+gnupg = "~/.config/gnupg"
+ssh = "~/.ssh"
