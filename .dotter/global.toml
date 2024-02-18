@@ -1,11 +1,11 @@
 [default]
-depends = ["wayland"]
-
-[default.files]
-fish = "~/.config/fish"
-foot = "~/.config/foot"
-gnupg = "~/.config/gnupg"
-ssh = "~/.ssh"
+depends = ["wayland", "shell"]
 
 [wayland.files]
 xdg-desktop-portal = "~/.config/xdg-desktop-portal"
+foot = "~/.config/foot"
+
+[shell.files]
+fish = "~/.config/fish"
+gnupg = "~/.config/gnupg"
+ssh = "~/.ssh"
