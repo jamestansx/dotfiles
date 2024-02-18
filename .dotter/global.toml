@@ -4,6 +4,7 @@ depends = ["wayland", "shell"]
 [wayland.files]
 xdg-desktop-portal = "~/.config/xdg-desktop-portal"
 foot = "~/.config/foot"
+fuzzel = "~/.config/fuzzel"
 
 [shell.files]
 fish = "~/.config/fish"
