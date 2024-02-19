@@ -1,6 +1,10 @@
 [default]
 depends = ["wayland", "shell"]
 
+[default.files]
+dotter = "~/.local/bin/dotter"
+git = "~/.config/git"
+
 [wayland.files]
 xdg-desktop-portal = "~/.config/xdg-desktop-portal"
 foot = "~/.config/foot"
