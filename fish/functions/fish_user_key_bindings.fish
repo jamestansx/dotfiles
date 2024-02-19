@@ -6,4 +6,7 @@ function fish_user_key_bindings
 
 	# https://github.com/fish-shell/fish-shell/issues/7152#issuecomment-663575001
 	bind \cz 'fg 2>/dev/null; commandline -f repaint'
+
+	# https://stackoverflow.com/a/58382277
+	bind -M insert \cy accept-autosuggestion execute
 end
