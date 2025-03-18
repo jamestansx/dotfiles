@@ -28,7 +28,7 @@ if flutter_sdk_root then
     }
 end
 
-vim.lsp.config["dartls"] = {
+return {
     cmd = { dart_bin, "language-server", "--protocol=lsp" },
     filetypes = { "dart" },
     root_markers = { "pubspec.yaml" },
