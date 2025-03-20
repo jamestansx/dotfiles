@@ -11,7 +11,7 @@ vim.o.colorcolumn = "+1"
 vim.o.exrc = true
 vim.o.mouse = "a"
 vim.o.mousemodel = "extend"
-vim.o.selection = "old" -- don't select past line
+vim.o.selection = "old" -- do not select past line
 vim.o.shada = "'100,<50,s10,:1000,/100,@100,h,r/tmp"
 vim.o.synmaxcol = 200
 vim.o.termguicolors = true
@@ -91,5 +91,5 @@ vim.api.nvim_create_autocmd("FileType", { group = augroup, command = "setlocal f
 vim.diagnostic.config({
     severity_sort = true,
     jump = { float = true },
-    signs = { severity = { min = 'WARN', max = 'ERROR' } },
+    signs = { severity = { min = "WARN", max = "ERROR" } },
 })
