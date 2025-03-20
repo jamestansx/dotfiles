@@ -23,7 +23,7 @@ M.gitinfo = function()
     local summary = vim.b.minigit_summary_string or ""
     if summary == "" then return "" end
 
-    return ("  %s"):format(summary)
+    return (" %s"):format(summary)
 end
 
 M.fileinfo = function()

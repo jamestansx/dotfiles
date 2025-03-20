@@ -175,20 +175,20 @@ end)
 
 -- NOTE: Neorg must be loaded immediately if neorg file is opened on startup to ensure Neorg
 -- works properly. Otherwise defer its loading to improve startup performance.
-local is_arg_neorg = vim.fn.argc() > 0 and vim.fn.fnamemodify(vim.fn.argv(0), ":e") == "norg"
-local now_or_later = is_arg_neorg and now or later
-now_or_later(function()
-    add({
-        source = "nvim-neorg/neorg",
-        depends = {
-            "nvim-treesitter/nvim-treesitter",
-            "pysan3/pathlib.nvim",
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-neorg/lua-utils.nvim",
-            "nvim-neotest/nvim-nio",
-        },
-    })
-
-    require("neorg").setup()
-end)
+-- local is_arg_neorg = vim.fn.argc() > 0 and vim.fn.fnamemodify(vim.fn.argv(0), ":e") == "norg"
+-- local now_or_later = is_arg_neorg and now or later
+-- now_or_later(function()
+--     add({
+--         source = "nvim-neorg/neorg",
+--         depends = {
+--             "nvim-treesitter/nvim-treesitter",
+--             "pysan3/pathlib.nvim",
+--             "MunifTanjim/nui.nvim",
+--             "nvim-lua/plenary.nvim",
+--             "nvim-neorg/lua-utils.nvim",
+--             "nvim-neotest/nvim-nio",
+--         },
+--     })
+--
+--     require("neorg").setup()
+-- end)
