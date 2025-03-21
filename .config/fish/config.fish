@@ -59,4 +59,6 @@ end
 if status is-interactive
     set -gx GPG_TTY (tty)
     gpg-connect-agent updatestartuptty /bye &>/dev/null
+
+    abbr -a dot git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
 end

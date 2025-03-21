@@ -1,0 +1,49 @@
+[user]
+    name = James Tan
+    email = jamestansx@gmail.com
+[init]
+    defaultBranch = main
+[core]
+    autocrlf = input
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    indentHeuristic = true
+    mnemonicPrefix = true
+    renames = true
+    tool = nvimdiff
+[pull]
+    ff = only
+[push]
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    all = true
+    prune = true
+    pruneTags = true
+[merge]
+    conflictStyle = zdiff3
+    tool = nvimdiff
+[help]
+    autocorrect = prompt
+[commit]
+    cleanup = scissors
+    verbose = true
+[rerere]
+    autoupdate = true
+    enabled = true
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
