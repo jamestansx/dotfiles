@@ -10,6 +10,7 @@ fish_add_path -gP "$HOME"/.local/bin
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx TERMINAL foot
+set -gx MANPAGER "nvim +Man!"
 set -gx BROWSER firefox-developer-edition
 
 # NOTE: machine specific variables!
