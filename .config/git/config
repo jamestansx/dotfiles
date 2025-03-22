@@ -7,17 +7,12 @@
     autocrlf = input
 [column]
     ui = auto
+[help]
+    autocorrect = prompt
 [branch]
     sort = -committerdate
 [tag]
     sort = version:refname
-[diff]
-    algorithm = histogram
-    colorMoved = plain
-    indentHeuristic = true
-    mnemonicPrefix = true
-    renames = true
-    tool = nvimdiff
 [pull]
     ff = only
 [push]
@@ -27,11 +22,16 @@
     all = true
     prune = true
     pruneTags = true
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    indentHeuristic = true
+    mnemonicPrefix = true
+    renames = true
+    tool = nvimdiff
 [merge]
     conflictStyle = zdiff3
     tool = nvimdiff
-[help]
-    autocorrect = prompt
 [commit]
     cleanup = scissors
     verbose = true
