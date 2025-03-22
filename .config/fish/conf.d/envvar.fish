@@ -23,6 +23,8 @@ set -gx CARGO_HOME "$XDG_DATA_HOME"/cargo
 set -gx RUSTUP_HOME "$XDG_DATA_HOME"/rustup
 set -gx CUDA_CACHE_PATH "$XDG_CACHE_HOME"/nv
 set -gx PARALLEL_HOME "$XDG_CONFIG_HOME"/parallel
+set -gx PYTHON_HISTORY "$XDG_STATE_HOME"/python_history
+set -gx PYTHONUSERBASE "$XDG_DATA_HOME"/python
 
 # NOTE: fish shell does not source /etc/profile
 # Ported important ones from them and source them manually
