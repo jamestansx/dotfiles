@@ -13,6 +13,8 @@
     sort = -committerdate
 [tag]
     sort = version:refname
+[status]
+    showStash = true
 [pull]
     ff = only
 [push]
