@@ -1,0 +1,117 @@
+bar:
+  height: 26
+  location: top
+  background: 181616ff
+  foreground: c5c9c5ff
+  spacing: 8
+  font: monospace:size=14
+
+  left:
+    - river:
+        anchors:
+          base: &base {text: "{id}", margin: 6, font: monospace:size=15}
+        content:
+          map:
+            on-click:
+              left: sh -c "riverctl set-focused-tags $((1 << ({id} - 1)))"
+              right: sh -c "riverctl toggle-focused-tags $((1 << ({id} -1)))"
+              middle: sh -c "riverctl toggle-view-tags $((1 << ({id} -1)))"
+            default:
+              string: {<<: *base, foreground: 737c73ff}
+            conditions:
+              # Only render tags from 1 - 9
+              id > 9: {empty: {}}
+              urgent: {string: {<<: *base, deco: {background: {color: e82424ff}}}}
+              focused: {string: {<<: *base, deco: {overline: {size: 2, color: 9fafbfff}}}}
+              occupied: {string: {<<: *base, foreground: b6927bff}}
+    - foreign-toplevel:
+        content:
+          map:
+            conditions:
+              ~activated: {empty: {}}
+              activated:
+                - string: {text: "{app-id}", foreground: c4b28aff}
+                - string: {text: ": {title}", max: 30}
+  right:
+    - battery:
+        name: BAT0
+        poll-interval: 10000
+        content:
+          map:
+            conditions:
+              state == charging || state == discharging:
+                list:
+                  spacing: 1
+                  items:
+                    - ramp:
+                        tag: capacity
+                        items:
+                          - string: {text:  , foreground: ff0000ff}
+                          - string: {text:  , foreground: ffa600ff}
+                          - string: {text:  }
+                          - string: {text:  }
+                          - string: {text:  }
+                          - string: {text:  }
+                          - string: {text:  , foreground: 00ff00ff}
+                    - string: {text: "{capacity}% ({estimate})"}
+    - pipewire:
+        anchors:
+          deco: &deco {overline: {size: 1, color: ffffffff}}
+        content:
+          map:
+            on-click:
+              left: sh -c "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+              wheel-up: sh -c "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
+              wheel-down: sh -c "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1"
+            conditions:
+              type == "sink":
+                list:
+                  spacing: 0
+                  items:
+                    - map:
+                        conditions:
+                          muted: {string: {text: " ", foreground: e82424ff, deco: *deco}}
+                          ~muted:
+                            list:
+                              items:
+                                - ramp:
+                                    tag: linear_volume
+                                    items:
+                                      - string: {text: " ", deco: *deco}
+                                      - string: {text: " ", deco: *deco}
+                                      - string: {text: " ", deco: *deco}
+                    - map:
+                        conditions:
+                          muted: {string: {text: "{linear_volume}%", foreground: e82424ff, deco: *deco}}
+                          ~muted: {string: {text: "{linear_volume}%", deco: *deco}}
+    - network:
+        poll-interval: 5000
+        anchors:
+          deco: &deco {overline: {size: 1, color: ffffffff}}
+        content:
+          map:
+            conditions:
+              name == wlan0:
+                list:
+                  spacing: 0
+                  items:
+                    - map:
+                        conditions:
+                          state == up:
+                            map:
+                              conditions:
+                                signal >= -50:
+                                  - string: {text: 󰤨 , deco: *deco}
+                                signal >= -67:
+                                  - string: {text: 󰤥 , deco: *deco}
+                                signal >= -70:
+                                  - string: {text: 󰤢 , deco: *deco}
+                                signal >= -80:
+                                  - string: {text: 󰤟 , deco: *deco}
+                    - string: {text: " {ipv4}", deco: *deco}
+
+    - clock:
+        date-format: "%a %d/%m"
+        time-format: "%H:%M"
+        content:
+          string: {text: "{date} {time}", deco: {overline: {size: 1, color: ffffffff}}}
