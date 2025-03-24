@@ -75,15 +75,15 @@ bar:
                             list:
                               items:
                                 - ramp:
-                                    tag: linear_volume
+                                    tag: cubic_volume
                                     items:
                                       - string: {text: " ", deco: *deco}
                                       - string: {text: " ", deco: *deco}
                                       - string: {text: " ", deco: *deco}
                     - map:
                         conditions:
-                          muted: {string: {text: "{linear_volume}%", foreground: e82424ff, deco: *deco}}
-                          ~muted: {string: {text: "{linear_volume}%", deco: *deco}}
+                          muted: {string: {text: "{cubic_volume}%", foreground: e82424ff, deco: *deco}}
+                          ~muted: {string: {text: "{cubic_volume}%", deco: *deco}}
     - network:
         poll-interval: 5000
         anchors:
