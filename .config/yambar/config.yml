@@ -87,6 +87,8 @@ bar:
                         conditions:
                           sink_muted: {string: {text: "{sink_percent:3}%", foreground: e82424ff, deco: *deco}}
                           ~sink_muted: {string: {text: "{sink_percent:3}%", deco: *deco}}
+    # NOTE: yambar reports incorrect state as unknown when wifi is up.
+    # see https://codeberg.org/dnkl/yambar/issues/414
     - network:
         poll-interval: 5000
         anchors:
@@ -100,17 +102,10 @@ bar:
                   items:
                     - map:
                         conditions:
-                          state == up:
-                            map:
-                              conditions:
-                                signal >= -50:
-                                  - string: {text: 󰤨 , deco: *deco}
-                                signal >= -67:
-                                  - string: {text: 󰤥 , deco: *deco}
-                                signal >= -70:
-                                  - string: {text: 󰤢 , deco: *deco}
-                                signal >= -80:
-                                  - string: {text: 󰤟 , deco: *deco}
+                          signal >= -50: {string: {text: 󰤨 , deco: *deco}}
+                          signal >= -67: {string: {text: 󰤥 , deco: *deco}}
+                          signal >= -70: {string: {text: 󰤢 , deco: *deco}}
+                          signal >= -80: {string: {text: 󰤟 , deco: *deco}}
                     - string: {text: " {ipv4}", deco: *deco}
 
     - clock:
