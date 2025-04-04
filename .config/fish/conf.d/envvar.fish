@@ -18,6 +18,9 @@ set -gx BROWSER firefox-developer-edition
 set -gx VDPAU_DRIVER va_gl
 set -gx ANV_VIDEO_DECODE 1
 
+# Fallback to X11 if wayland implementation is not available
+set -gx QT_QPA_PLATFORM="wayland;xcb"
+
 # XDG base directories
 set -gx GNUPGHOME "$XDG_DATA_HOME"/gnupg
 set -gx CARGO_HOME "$XDG_DATA_HOME"/cargo
@@ -26,6 +29,7 @@ set -gx CUDA_CACHE_PATH "$XDG_CACHE_HOME"/nv
 set -gx PARALLEL_HOME "$XDG_CONFIG_HOME"/parallel
 set -gx PYTHON_HISTORY "$XDG_STATE_HOME"/python_history
 set -gx PYTHONUSERBASE "$XDG_DATA_HOME"/python
+set -gx IDF_TOOLS_PATH "$XDG_DATA_HOME"/espressif
 
 # NOTE: fish shell does not source /etc/profile
 # Ported important ones from them and source them manually
