@@ -20,6 +20,9 @@ set -gx ANV_VIDEO_DECODE 1
 
 # Fallback to X11 if wayland implementation is not available
 set -gx QT_QPA_PLATFORM "wayland;xcb"
+# gtk themes. Some applications doesn't respect dconf...
+set -gx GTK_THEME "Adwaita:dark"
+set -gx QT_STYLE_OVERRIDE "Adwaita-Dark"
 
 # XDG base directories
 set -gx GNUPGHOME "$XDG_DATA_HOME"/gnupg
@@ -35,3 +38,4 @@ set -gx IDF_TOOLS_PATH "$XDG_DATA_HOME"/espressif
 # Ported important ones from them and source them manually
 fish_add_path -gP /usr/local/sbin /usr/local/bin /usr/bin
 fish_add_path -gP /usr/lib/rustup/bin
+set -gx SAL_USE_VCLPLUGIN gtk4
