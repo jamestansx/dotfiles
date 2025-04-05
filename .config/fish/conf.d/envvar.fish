@@ -38,4 +38,3 @@ set -gx IDF_TOOLS_PATH "$XDG_DATA_HOME"/espressif
 # Ported important ones from them and source them manually
 fish_add_path -gP /usr/local/sbin /usr/local/bin /usr/bin
 fish_add_path -gP /usr/lib/rustup/bin
-set -gx SAL_USE_VCLPLUGIN gtk4
