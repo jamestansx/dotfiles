@@ -19,7 +19,7 @@ set -gx VDPAU_DRIVER va_gl
 set -gx ANV_VIDEO_DECODE 1
 
 # Fallback to X11 if wayland implementation is not available
-set -gx QT_QPA_PLATFORM="wayland;xcb"
+set -gx QT_QPA_PLATFORM "wayland;xcb"
 
 # XDG base directories
 set -gx GNUPGHOME "$XDG_DATA_HOME"/gnupg
