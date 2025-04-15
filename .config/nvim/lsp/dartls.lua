@@ -32,7 +32,6 @@ return {
     cmd = { dart_bin, "language-server", "--protocol=lsp" },
     filetypes = { "dart" },
     root_markers = { "pubspec.yaml" },
-    single_file_support = true,
     settings = {
         ["dart"] = {
             completeFunctionCalls = true,

@@ -58,16 +58,20 @@ now(function()
 
     require("me.lsp.status").setup()
 
-    vim.lsp.log.set_format_func(vim.inspect)
-    vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
-
     vim.lsp.config("*", {
         root_markers = { ".git" },
     })
 
-    vim.lsp.enable("rust_analyzer")
-    vim.lsp.enable("tsserver")
-    vim.lsp.enable("dartls")
+    vim.lsp.enable({
+        "rust_analyzer",
+        "tsserver",
+        "dartls",
+    })
+
+    later(function()
+        vim.lsp.log.set_format_func(vim.inspect)
+        vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
+    end)
 end)
 
 -- auto-completion
