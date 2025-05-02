@@ -1,0 +1,7 @@
+background-color=#181616ff
+text-color=#c5c9c5ff
+border-color=#2d4f67ff
+border-size=1
+icon-location=right
+default-timeout=10000
+layer=overlay
