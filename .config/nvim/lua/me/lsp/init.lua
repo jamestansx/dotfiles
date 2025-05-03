@@ -1,9 +1,10 @@
 local M = {}
 
--- TODO: use ++all args to select all lsp clients (not only from the current buffer)
 local get_clients_from_names = function(names)
     if #names == 0 then
         return vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+    elseif vim.iter(names):any(function(v) return v == "++all" end) then
+        return vim.lsp.get_clients()
     else
         return vim.iter(vim.lsp.get_clients()):filter(function(v)
             return vim.tbl_contains(names, v.name)
@@ -24,7 +25,10 @@ local stop_clients = function(cls, forced)
     return detached_cls
 end
 
-M.complete_client_names = function()
+M.complete_client_names = function(lead)
+    -- Indicates all servers
+    if lead == "++" then return { "++all" } end
+
     return vim.iter(vim.lsp.get_clients()):map(function(v)
         return v.name
     end):totable()
@@ -43,7 +47,7 @@ M.restart = function(names, forced)
         for i = 1, #detached_cls do
             local cl, bufs = unpack(detached_cls[i])
 
-            if cl.is_stopped() then
+            if cl:is_stopped() then
                 for j = 1, #bufs do
                     vim.lsp.start(cl.config, { bufnr = bufs[j] })
                 end

@@ -13,7 +13,16 @@ command("LspInfo", function()
     vim.cmd("botright checkhealth vim.lsp")
 end, {})
 
-command("LspLog", function(kwargs)
-    if(kwargs.args == "clear") then lsp.log_clear() end
-    if(kwargs.args == "") then lsp.log_open() end
-end, { nargs = "?", complete = function() return { "clear" } end })
+do -- lsp log
+    local cmds = {
+        ["open"] = lsp.log_open,
+        ["clear"] = lsp.log_clear,
+    }
+    command("LspLog", function(kwargs)
+        if vim.tbl_get(cmds, kwargs.args) then
+            cmds[kwargs.args]()
+        else -- default action
+            lsp.log_open()
+        end
+    end, { nargs = "?", complete = function() return vim.tbl_keys(cmds) end })
+end
