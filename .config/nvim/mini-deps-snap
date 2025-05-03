@@ -1,10 +1,10 @@
 return {
-  ["blink.cmp"] = "cb5e346d9e0efa7a3eee7fd4da0b690c48d2a98e",
-  ["conform.nvim"] = "b1a75324ddf96b7bb84963a297b1ed334db087c0",
-  ["leap.nvim"] = "346a16ef942635a8ca5ff92e603d07e7e8be6cbe",
-  ["mini-git"] = "cf928950a29d5158dcc76530443436a45411738f",
+  ["blink.cmp"] = "4f38ce99a472932d5776337f08f7a8180f1f571a",
+  ["conform.nvim"] = "372fc521f8421b7830ea6db4d6ea3bae1c77548c",
+  ["leap.nvim"] = "2b68ddc0802bd295e64c9e2e75f18f755e50dbcc",
+  ["mini-git"] = "a0ddc6302f654523053c28109e8b6dbbf05c08f8",
   ["mini.deps"] = "1807fa0547f0489c2743a356ac76f67bba7c9022",
-  ["mini.pick"] = "f95dc0bb9db7124f55b225f544a8719476c64314",
+  ["mini.pick"] = "417c273861971b451687e847383e61687463b06e",
   undotree = "b951b87b46c34356d44aa71886aecf9dd7f5788a",
   ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257",
   ["vim-repeat"] = "65846025c15494983dafe5e3b46c8f88ab2e9635"

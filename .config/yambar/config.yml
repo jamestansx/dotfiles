@@ -107,7 +107,6 @@ bar:
                           signal >= -70: {string: {text: 󰤢 , deco: *deco}}
                           signal >= -80: {string: {text: 󰤟 , deco: *deco}}
                     - string: {text: " {ipv4}", deco: *deco}
-
     - clock:
         date-format: "%a %d/%m"
         time-format: "%H:%M"

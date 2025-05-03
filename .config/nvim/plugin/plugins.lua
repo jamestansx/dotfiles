@@ -76,7 +76,7 @@ end)
 
 -- auto-completion
 later(function()
-    add({ source = "Saghen/blink.cmp", checkout = "v1.1.1" })
+    add({ source = "Saghen/blink.cmp", checkout = "v1.2.0" })
 
     require("blink.cmp").setup({
         keymap = {
@@ -162,6 +162,8 @@ later(function()
     vim.keymap.set("n", "<leader>f", "<cmd>Pick files<cr>")
     vim.keymap.set("n", "<leader>g", "<cmd>Pick grep_live<cr>")
     vim.keymap.set("n", "yop", "<cmd>Pick resume<cr>")
+
+    vim.api.nvim_create_user_command("Help", "Pick help", {})
 end)
 
 later(function()
