@@ -1,6 +1,8 @@
 return {
     cmd = { "rust-analyzer" },
     filetypes = { "rust" },
+    -- TODO: Now that root_dir gains callback, we may be able to
+    -- run cargo command to check for the root directory asynchronously.
     root_markers = { "Cargo.toml" },
     capabilities = {
         experimental = {
