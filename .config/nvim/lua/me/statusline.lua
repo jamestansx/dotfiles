@@ -5,6 +5,7 @@ local state = {
 }
 
 -- TODO: check truncate condition on 'VimResized' event or within function itself
+-- TODO: add customizable highlight color to components
 local config = {
     lsp_icon = "●",
     diagnostic = {
@@ -15,18 +16,18 @@ local config = {
     },
 }
 
-M.filename = function() return "%f%( %h%w%m%r%)" end
-M.ruler = function() return "%-6.(%l,%v%) (%P)" end
-M.diagcount = function(buf) return state.diagcount[buf] or "" end
+local filename = function() return "%f%( %h%w%m%r%)" end
+local ruler = function() return "%-6.(%l,%v%) (%P)" end
+local diagcount = function(buf) return state.diagcount[buf] or "" end
 
-M.gitinfo = function()
+local gitinfo = function()
     local summary = vim.b.minigit_summary_string or ""
     if summary == "" then return "" end
 
     return (" %s"):format(summary)
 end
 
-M.fileinfo = function()
+local fileinfo = function()
     local filetype = vim.bo.filetype
     local fileencoding = vim.bo.fileencoding
     local fileformat = vim.bo.fileformat
@@ -60,9 +61,9 @@ local component = function(str) return str == "" and "" or (" %s "):format(str) 
 M.statusline = function()
     local bufnr = vim.api.nvim_get_current_buf()
     local comp = {
-        M.filename(), M.gitinfo(), M.diagcount(bufnr),
+        filename(), gitinfo(), diagcount(bufnr),
         "%=",
-        "%{v:lua.require'me.lsp.status'.get_progress()}", M.fileinfo(), M.ruler(),
+        "%{v:lua.require'me.lsp.status'.get_progress()}", fileinfo(), ruler(),
     }
 
     return table.concat(vim.tbl_map(component, comp, ""))
