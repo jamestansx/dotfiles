@@ -16,7 +16,7 @@ now(function()
     add("justinmk/vim-dirvish")
 
     -- sort directories with dotfiles first
-    vim.g.dirvish_mode = [[:sort | sort ,^.*[\/],]]
+    vim.g.dirvish_mode = [[:sort i | sort ,^.*[\/],]]
 
     -- required 'expr' to be true
     local eat_space = function(key)
