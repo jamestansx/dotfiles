@@ -107,6 +107,7 @@ later(function()
             enabled = true,
             window = { show_documentation = false },
         },
+        cmdline = { enabled = false },
     })
 end)
 

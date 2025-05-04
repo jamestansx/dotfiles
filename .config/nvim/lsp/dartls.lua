@@ -4,8 +4,6 @@
 local analysis_excluded_folders, flutter_sdk_root
 local dart_bin = "dart"
 
-local path_join = function(...) return table.concat({...}, "/") end
-
 -- Path discovery performance is slow if searching downwards
 -- so instead searching upward from the buffer path itself
 if vim.fn.executable("fvm") == 1 then
@@ -18,18 +16,18 @@ if vim.fn.executable("fvm") == 1 then
     })[1]
 
     if fvm_dir then
-        flutter_sdk_root = vim.uv.fs_realpath(path_join(fvm_dir, "flutter_sdk"))
-        dart_bin = path_join(flutter_sdk_root, "bin", "dart")
+        flutter_sdk_root = vim.uv.fs_realpath(vim.fs.joinpath({fvm_dir, "flutter_sdk"}))
+        dart_bin = vim.fs.joinpath({flutter_sdk_root, "bin", "dart"})
     end
 elseif vim.fn.executable("flutter") == 1 then
     flutter_sdk_root = vim.fn.fnamemodify(vim.fn.exepath("flutter"), ":p:h:h")
-    dart_bin = path_join(flutter_sdk_root, "bin", "dart")
+    dart_bin = vim.fs.joinpath({flutter_sdk_root, "bin", "dart"})
 end
 
 if flutter_sdk_root then
     analysis_excluded_folders = {
-        path_join(flutter_sdk_root, "packages"),
-        path_join(flutter_sdk_root, ".pub-cache")
+        vim.fs.joinpath({flutter_sdk_root, "packages"}),
+        vim.fs.joinpath({flutter_sdk_root, ".pub-cache"})
     }
 end
 
