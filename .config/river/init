@@ -1,0 +1,122 @@
+#!/bin/sh
+
+# TODO:
+# scratchpad & stickypad
+# wallpaper
+# screenshot
+# screen idle & screenlock
+
+spawn_once() { riverctl spawn "pgrep -A -f $1 >/dev/null || $*"; }
+
+####### Interop #######
+riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
+####### Applications #######
+spawn_once foot --server
+spawn_once yambar
+spawn_once fcitx5
+spawn_once rivertile
+
+####### Appearance #######
+# TODO: wallpaper
+
+riverctl border-width 2
+riverctl background-color 0x0d0c0c
+riverctl border-color-urgent 0xe82424
+riverctl border-color-focused 0x54546d
+riverctl border-color-unfocused 0x0d0c0c
+
+# gtk settings
+riverctl spawn "gsettings set org.gnome.desktop.session session-name 'river'"
+riverctl spawn "gsettings set org.gnome.desktop.wm.preferences button-layout ''"
+riverctl spawn "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
+riverctl spawn "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+
+####### Inputs #######
+riverctl set-repeat 90 300
+riverctl keyboard-layout -options "caps:swapescape" us
+
+# touchpad
+riverctl input *_Touchpad events disabled-on-external-mouse
+riverctl input *_Touchpad pointer-accel 0.3
+riverctl input *_Touchpad scroll-method two-finger
+riverctl input *_Touchpad accel-profile adaptive
+riverctl input *_Touchpad tap enabled
+riverctl input *_Touchpad drag enabled
+riverctl input *_Touchpad natural-scroll enabled
+
+####### Rules #######
+# tag for browser
+riverctl rule-add ssd
+
+####### Config #######
+riverctl default-layout rivertile
+riverctl default-attach-mode above
+
+####### Keymap #######
+# media keys
+for mode in normal locked
+do
+    # volumes
+    riverctl map $mode None XF86AudioMute        spawn "wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle"
+    riverctl map $mode None XF86AudioRaiseVolume spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
+    riverctl map $mode None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1"
+
+    # brightness
+    riverctl map $mode None XF86MonBrightnessUp   spawn "brightnessctl set +5%"
+    riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl set 5%-"
+done
+
+# pointers
+riverctl map-pointer normal Super BTN_LEFT  move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+riverctl map normal Super+Shift Return spawn footclient
+riverctl map normal Super       P      spawn fuzzel
+riverctl map normal Super       B      spawn firefox-developer-edition
+riverctl map normal Super       Escape spawn "makoctl dismiss -a"
+
+riverctl map normal Super       Space  zoom
+riverctl map normal Super       Q      close
+riverctl map normal Super       F      toggle-fullscreen
+riverctl map normal Super+Shift F      toggle-float
+
+riverctl map normal Super       K      focus-view up
+riverctl map normal Super       J      focus-view down
+riverctl map normal Super       H      focus-view left
+riverctl map normal Super       L      focus-view right
+
+riverctl map normal Super+Shift K      swap up
+riverctl map normal Super+Shift J      swap down
+riverctl map normal Super+Shift H      swap left
+riverctl map normal Super+Shift L      swap right
+
+# Not useful but good to have just in case
+riverctl map normal Super       Period focus-output next
+riverctl map normal Super       Comma  focus-output next
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma  send-to-output next
+
+riverctl map normal Super APOSTROPHE   send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map normal Super SEMICOLON    send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Super EQUAL        send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super MINUS        send-layout-cmd rivertile "main-count -1"
+
+# tags management
+for i in $(seq 1 9)
+do
+        tags=$((1 << ($i - 1)))
+
+        riverctl map normal Super       $i set-focused-tags $tags
+        riverctl map normal Super+Shift $i set-view-tags    $tags
+done
+
+all_tags=$(((1 << 32)- 1))
+riverctl map normal Super       0 set-focused-tags $all_tags
+riverctl map normal Super+Shift 0 set-view-tags    $all_tags
+
+riverctl map normal Supe        Tab focus-previous-tags
+riverctl map normal Super+Shift Tab send-to-previous-tags
+
+# vim: set ts=4
