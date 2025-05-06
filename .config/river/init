@@ -116,7 +116,7 @@ all_tags=$(((1 << 32)- 1))
 riverctl map normal Super       0 set-focused-tags $all_tags
 riverctl map normal Super+Shift 0 set-view-tags    $all_tags
 
-riverctl map normal Supe        Tab focus-previous-tags
+riverctl map normal Super       Tab focus-previous-tags
 riverctl map normal Super+Shift Tab send-to-previous-tags
 
 # vim: set ts=4
