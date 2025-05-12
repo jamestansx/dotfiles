@@ -1,6 +1,7 @@
 local M = {}
 
 local status = {
+    name = "",
     message = "",
     running = false,
     spinner_idx = 0,
@@ -9,7 +10,7 @@ local status = {
 
 local augroup = vim.api.nvim_create_augroup("me.lsp.status", { clear = true })
 local config = {
-    max_message_width = 30,
+    max_message_width = 17,
     update_ms = 100,
     icons = {
         spinners = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
@@ -17,22 +18,25 @@ local config = {
     }
 }
 
-local format_progress = function(name, value)
-    local percent = value.percentage
+-- format: (xxx%) title - message
+local format_progress = function(value)
+    local builder = {}
     local title = value.title or ""
+    local percent = value.percentage and ("(%3d%%)"):format(value.percentage)
     local message = value.message or ""
-    local sep = value.message and ": " or ""
-
     -- truncate long message
     if #message > config.max_message_width then
         message = message:sub(1, config.max_message_width) .. "…"
     end
 
-    if percent then
-        title = ("%s (%3d%%)"):format(title, percent)
+    if title ~= "" then builder[#builder + 1] = title end
+    if percent then builder[#builder + 1] = percent end
+    if message ~= "" then
+        builder[#builder + 1] = "-"
+        builder[#builder + 1] = message
     end
 
-    return ("%s%s%s [%s]"):format(message, sep, title, name)
+    return table.concat(builder, " ")
 end
 
 local spin = function()
@@ -44,6 +48,7 @@ local spin = function()
             vim.defer_fn(function()
                 -- New progress update, don't clear the status
                 if status.running then return end
+
                 status.message = ""
                 vim.cmd.redrawstatus()
             end, 1000)
@@ -60,7 +65,7 @@ M.get_progress = function()
     if status.message == "" then return "" end
 
     local icon = status.running and config.icons.spinners[status.spinner_idx] or config.icons.done
-    return ("%s %s"):format(status.message, icon)
+    return ("%s %s %s"):format(status.name, icon, status.message)
 end
 
 M.setup = function()
@@ -90,7 +95,8 @@ M.setup = function()
             local value = args.data.params.value
             local name = vim.lsp.get_client_by_id(id).name
 
-            status.message = format_progress(name, value)
+            status.name = ("[%s]"):format(name)
+            status.message = format_progress(value)
 
             local is_done = value.kind == "end"
             status.running = not is_done

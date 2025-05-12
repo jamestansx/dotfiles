@@ -23,16 +23,14 @@ local diagcount = function(buf) return state.diagcount[buf] or "" end
 local gitinfo = function()
     local summary = vim.b.minigit_summary_string or ""
     if summary == "" then return "" end
-
     return (" %s"):format(summary)
 end
 
 local fileinfo = function()
     local filetype = vim.bo.filetype
-    local fileencoding = vim.bo.fileencoding
     local fileformat = vim.bo.fileformat
+    local fileencoding = vim.bo.fileencoding
     local icon = state.lsp_attached and config.lsp_icon or ""
-
     return ("%%(%s %%)%%(%s %%)%s[%s]"):format(icon, filetype, fileencoding, fileformat)
 end
 
@@ -57,16 +55,16 @@ local diag_cb = function(args)
     if current_buf == buf then vim.cmd.redrawstatus() end
 end
 
-local component = function(str) return str == "" and "" or (" %s "):format(str) end
+local join_component = function(comp) return comp == "" and "" or (" %s "):format(comp) end
 M.statusline = function()
     local bufnr = vim.api.nvim_get_current_buf()
     local comp = {
         filename(), gitinfo(), diagcount(bufnr),
-        "%=",
-        "%{v:lua.require'me.lsp.status'.get_progress()}", fileinfo(), ruler(),
+        "%=", "%{v:lua.require'me.lsp.status'.get_progress()}", "%<%=",
+        fileinfo(), ruler(),
     }
 
-    return table.concat(vim.tbl_map(component, comp, ""))
+    return table.concat(vim.tbl_map(join_component, comp, ""))
 end
 
 M.setup = function()
