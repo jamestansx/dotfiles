@@ -1,6 +1,7 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 later(function()
+    require("vim._extui").enable({})
     vim.cmd("packadd! cfilter")
     vim.cmd("packadd! termdebug")
 end)

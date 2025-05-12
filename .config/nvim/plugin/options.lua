@@ -90,6 +90,6 @@ vim.api.nvim_create_autocmd("FileType", { group = augroup, command = "setlocal f
 
 vim.diagnostic.config({
     severity_sort = true,
-    jump = { float = true },
+    jump = { on_jump = function() vim.diagnostic.open_float() end },
     signs = { severity = { min = "WARN", max = "ERROR" } },
 })
