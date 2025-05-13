@@ -77,7 +77,7 @@ end)
 
 -- auto-completion
 later(function()
-    add({ source = "Saghen/blink.cmp", checkout = "v1.2.0" })
+    add({ source = "Saghen/blink.cmp", checkout = "v1.3.0" })
 
     require("blink.cmp").setup({
         keymap = {
