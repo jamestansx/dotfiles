@@ -1,4 +1,8 @@
 if status is-login; and test -z "$WAYLAND_DISPLAY" -a "$XDG_VTNR" = 1
+    exec niri-session -l
+end
+
+if status is-login; and test -z "$WAYLAND_DISPLAY" -a "$XDG_VTNR" = 2
     set -gx XDG_SESSION_TYPE wayland
     set -gx XDG_CURRENT_DESKTOP river
     set -gx _JAVA_AWT_WM_NONREPARENTING 1
