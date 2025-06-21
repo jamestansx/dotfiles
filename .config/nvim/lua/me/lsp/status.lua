@@ -82,6 +82,7 @@ M.setup = function()
         callback = function()
             if #vim.lsp.get_clients() > 0 then return end
             if status.timer and not status.timer:is_closing() then
+                vim.cmd.redrawstatus()
                 status.timer:stop()
                 status.timer:close()
             end

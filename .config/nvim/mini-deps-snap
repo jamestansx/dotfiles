@@ -1,11 +1,11 @@
 return {
-  ["blink.cmp"] = "54cbaac2064fe6198ec55b636b53cc8c9791ead3",
-  ["conform.nvim"] = "374aaf384e2e841607b8e2fe63fa3ad01d111c91",
-  ["leap.nvim"] = "2b68ddc0802bd295e64c9e2e75f18f755e50dbcc",
-  ["mini-git"] = "a0ddc6302f654523053c28109e8b6dbbf05c08f8",
-  ["mini.deps"] = "1807fa0547f0489c2743a356ac76f67bba7c9022",
-  ["mini.pick"] = "fa1e449e1080bf7aa9b2890ee186d23b1b4e1287",
+  ["blink.cmp"] = "9bcb14b43852a6f2bfd5ac9ef29cb5cf09b1b39b",
+  ["conform.nvim"] = "8132ec733eed3bf415b97b76797ca41b59f51d7d",
+  ["leap.nvim"] = "10c14af4ddfb34dbd7721f0bfb2b4d91f0558907",
+  ["mini-git"] = "9d4e4e220b59fed49c6efbadfdd8230994d969be",
+  ["mini.deps"] = "d5b868777d63c7e1028dcd601dfe6738d4686fca",
+  ["mini.pick"] = "bfe86d7a7a78f9e50bbb418358c5ab30e804804f",
   undotree = "b951b87b46c34356d44aa71886aecf9dd7f5788a",
   ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257",
-  ["vim-repeat"] = "65846025c15494983dafe5e3b46c8f88ab2e9635"
+  ["vim-repeat"] = "65846025c15494983dafe5e3b46c8f88ab2e9635",
 }
