@@ -38,3 +38,8 @@ set -gx IDF_TOOLS_PATH "$XDG_DATA_HOME"/espressif
 # Ported important ones from them and source them manually
 fish_add_path -gP /usr/local/sbin /usr/local/bin /usr/bin
 fish_add_path -gP /usr/lib/rustup/bin
+
+set -gx ANDROID_HOME "/opt/android-sdk"
+set -gx ANDROID_SDK_ROOT "/opt/android-sdk"
+fish_add_path -gP "$ANDROID_HOME"/cmdline-tools/latest/bin
+fish_add_path -gP "$ANDROID_HOME"/platform-tools
