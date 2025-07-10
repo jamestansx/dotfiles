@@ -33,6 +33,7 @@ set -gx PARALLEL_HOME "$XDG_CONFIG_HOME"/parallel
 set -gx PYTHON_HISTORY "$XDG_STATE_HOME"/python_history
 set -gx PYTHONUSERBASE "$XDG_DATA_HOME"/python
 set -gx IDF_TOOLS_PATH "$XDG_DATA_HOME"/espressif
+set -gx WINEPREFIX "$XDG_DATA_HOME"/wineprefixes/default
 
 # NOTE: fish shell does not source /etc/profile
 # Ported important ones from them and source them manually
