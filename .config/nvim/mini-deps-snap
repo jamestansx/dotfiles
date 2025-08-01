@@ -1,7 +1,7 @@
 return {
-  ["blink.cmp"] = "586ee87534f5bf65f1c8dea2d1da2a57e8cddd36",
+  ["blink.cmp"] = "bae4bae0eedd1fa55f34b685862e94a222d5c6f8",
   ["conform.nvim"] = "973f3cb73887d510321653044791d7937c7ec0fa",
-  ["leap.nvim"] = "d9c6bb1a2267f96169b955dfd68600b1079213ce",
+  ["leap.nvim"] = "a95876479037619214a6c5d082738362b8bf61ca",
   ["mini-git"] = "c38380e1a6582b1aee7de26e9738b1ce17366d7d",
   ["mini.deps"] = "2953b2089591a49a70e0a88194dbb47fb0e4635c",
   ["mini.pick"] = "c8f4ff0251ccb8c6a993ee0dee4e06d9c21a4b99",
