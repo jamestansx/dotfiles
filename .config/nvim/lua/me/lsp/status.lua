@@ -24,6 +24,7 @@ local format_progress = function(value)
     local title = value.title or ""
     local percent = value.percentage and ("(%3d%%)"):format(value.percentage)
     local message = value.message or ""
+
     -- truncate long message
     if #message > config.max_message_width then
         message = message:sub(1, config.max_message_width) .. "…"
@@ -50,14 +51,14 @@ local spin = function()
                 if status.running then return end
 
                 status.message = ""
-                vim.cmd.redrawstatus()
+                vim.api.nvim__redraw({ statusline = true })
             end, 1000)
             status.timer:stop()
         end
 
         local idx = status.spinner_idx
         status.spinner_idx = idx == #config.icons.spinners and 1 or idx + 1
-        vim.cmd.redrawstatus()
+        vim.api.nvim__redraw({ statusline = true })
     end))
 end
 
@@ -82,7 +83,7 @@ M.setup = function()
         callback = function()
             if #vim.lsp.get_clients() > 0 then return end
             if status.timer and not status.timer:is_closing() then
-                vim.cmd.redrawstatus()
+                vim.api.nvim__redraw({ statusline = true })
                 status.timer:stop()
                 status.timer:close()
             end

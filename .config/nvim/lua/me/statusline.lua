@@ -4,8 +4,10 @@ local state = {
     lsp_attached = false,
 }
 
--- TODO: check truncate condition on 'VimResized' event or within function itself
--- TODO: add customizable highlight color to components
+-- TODO:-
+-- - check truncate condition on 'VimResized' event or within function itself
+-- - add customizable highlight color to components
+-- - add "busy" indicator
 local config = {
     lsp_icon = "●",
     diagnostic = {
@@ -52,7 +54,9 @@ local diag_cb = function(args)
         state.diagcount[buf] = #t > 0 and table.concat(t, " ") or nil
     end
 
-    if current_buf == buf then vim.cmd.redrawstatus() end
+    if current_buf == buf then
+        vim.api.nvim__redraw({ buf = buf, statusline = true })
+    end
 end
 
 local join_component = function(comp) return comp == "" and "" or (" %s "):format(comp) end
@@ -64,7 +68,7 @@ M.statusline = function()
         fileinfo(), ruler(),
     }
 
-    return table.concat(vim.tbl_map(join_component, comp, ""))
+    return table.concat(vim.tbl_map(join_component, comp))
 end
 
 M.setup = function()
