@@ -78,6 +78,7 @@ M.setup = function()
         group = augroup,
         callback = vim.schedule_wrap(function()
             state.lsp_attached = vim.tbl_count(vim.lsp.get_clients()) > 0
+            vim.api.nvim__redraw({ statusline = true })
         end),
     })
 

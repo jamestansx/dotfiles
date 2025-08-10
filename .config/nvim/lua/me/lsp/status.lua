@@ -81,8 +81,15 @@ M.setup = function()
     vim.api.nvim_create_autocmd("LspDetach", {
         group = augroup,
         callback = function()
-            if #vim.lsp.get_clients() > 0 then return end
+            -- Detaching client is inclusive too
+            if #vim.lsp.get_clients() > 1 then return end
+
             if status.timer and not status.timer:is_closing() then
+                -- Cleanup
+                status.name = ""
+                status.message = ""
+                status.spinner_idx = 0
+
                 vim.api.nvim__redraw({ statusline = true })
                 status.timer:stop()
                 status.timer:close()
