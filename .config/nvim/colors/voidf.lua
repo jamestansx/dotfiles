@@ -47,15 +47,19 @@ local __color__ = {
     fg1     = "#c8c093",
     visual  = "#223249",
 
+    red0    = "#c03030",
     red     = "#f43838",
     yellow  = "#f4df30",
     aqua    = "#6a9589", -- hint
+    teal0   = "#08272b",
+    teal01  = "#00434d",
     teal    = "#678897", -- info
     blue    = "#96a6c8",
     grey0   = "#252528",
     grey    = "#7a857a",
     grey1   = "#5a5a5a",
     grey2   = "#71767e",
+    green0  = "#273621",
     green   = "#98cc6c",
     orange  = "#e58f35",
     brown   = "#b38318",
@@ -69,6 +73,10 @@ hi(0, "ColorColumn",  { bg = __color__.grey0 })
 hi(0, "Conceal",      { fg = __color__.grey2 })
 hi(0, "CursorLine",   { bg = __color__.grey0 })
 hi(0, "Directory",    { fg = __color__.blue })
+hi(0, "DiffAdd",      { bg = __color__.green0 })
+hi(0, "DiffChange",   { bg = __color__.teal0 })
+hi(0, "DiffDelete",   { fg = __color__.red0 })
+hi(0, "DiffText",     { bg = __color__.teal01 })
 hi(0, "LineNr",       { fg = __color__.grey1 })
 hi(0, "Normal",       { bg = __color__.bg, fg = __color__.fg })
 hi(0, "NormalFloat",  { bg = __color__.bg0, blend = 7 })
@@ -120,16 +128,15 @@ hi(0, "dartBraces", { fg = __color__.fg })
 hi(0, "Label", { fg = __color__.aqua })
 
 -- hi(0, "Added", { fg = "#b3f6c0" })
--- hi(0, "Added", { fg = "#b3f6c0" })
-hi(0, "DiffAdd", { bg = "#273621", fg = C.fg7 })
--- hi(0, "DiffAdd", { bg = "#b3f6c0", fg = __color__.bg })
--- hi(0, "DiffChange", {})
--- hi(0, "DiffText", { bg = "#4f4630", fg = C.fg7 })
+
+hi(0, "ErrorMsg", { fg = __color__.red })
+hi(0, "WarningMsg", { fg = __color__.yellow })
+-- hi(0, "MatchParen", {})
+
 
 -- hi(0, "@variable", { fg = C.grey2 })
 hi(0, "@variable", { fg = __color__.fg })
 hi(0, "Title", { fg = __color__.fg })
-hi(0, "FloatTitle", { bg = __color__.bg0, fg = __color__.fg, blend = 10 })
 
 -- Terminal colors
 vim.g.terminal_color_0 = ""
