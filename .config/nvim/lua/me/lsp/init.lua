@@ -70,11 +70,11 @@ M.stop = function(names, forced)
 end
 
 M.log_open = function()
-    vim.cmd(("tabnew %s"):format(vim.lsp.get_log_path()))
+    vim.cmd(("tabnew %s"):format(vim.lsp.log.get_filename()))
 end
 
 M.log_clear = function()
-    vim.fs.rm(vim.lsp.get_log_path())
+    vim.fs.rm(vim.lsp.log.get_filename())
 end
 
 return M
