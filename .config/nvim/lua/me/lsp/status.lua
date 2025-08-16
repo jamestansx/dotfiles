@@ -88,11 +88,13 @@ M.setup = function()
                 -- Cleanup
                 status.name = ""
                 status.message = ""
+                status.running = false
                 status.spinner_idx = 0
 
-                vim.api.nvim__redraw({ statusline = true })
                 status.timer:stop()
                 status.timer:close()
+                status.timer = nil
+                vim.api.nvim__redraw({ statusline = true })
             end
         end,
     })
