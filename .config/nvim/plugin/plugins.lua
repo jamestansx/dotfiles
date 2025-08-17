@@ -151,7 +151,7 @@ later(function()
     vim.keymap.set({"n", "x", "o"}, "gs", function() require("leap.remote").action() end)
     vim.keymap.set({"n", "x", "o"}, "gS", function() leap.leap({ target_windows = user.get_enterable_windows() }) end)
 
-    vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+    vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment", default = true })
 end)
 
 later(function()

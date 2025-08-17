@@ -4,42 +4,6 @@ if vim.g.syntax_on == 1     then vim.cmd("syntax reset") end
 vim.g.colors_name = "voidf"
 
 local C = {
-    bg0    = "#0d0c0c",
-    bg     = "#171717",
-    bg3    = "#282727",
-    bg1    = "#141414",
-    bg2    = "#1d1c19",
-
-    fg2    = "#d8d8d8",
-    fg3    = "#c8c8c8",
-    fg     = "#c5c9c5",
-    fg1    = "#969bb1",
-    fg5    = "#d0d0bd",
-    fg6    = "#d3d3de",
-    fg7    = "#cacad3",
-    fg8    = "#c8c093",
-    grey   = "#808080",
-    grey2  = "#a6a69c",
-    grey3  = "#9e9e9c",
-    grey4 = "#71767e",
-    grey5 = "#898e98",
-    grey6 = "#484848",
-    comment = "#7A857A",
-    visual = "#223249",
-    red    = "#f43838",
-    red0 = "#FBB1B1",
-    error = "#f43838",
-    orange = "#e58f35",
-    yellow = "#e9da24",
-    warning = "#f4df30",
-    green  = "#98cc6c",
-    ok     = "#85dd3c",
-    blue   = "#96a6c8",
-    hint = "#6a9589",
-    info = "#678897",
-}
-
-local __color__ = {
     bg0     = "#0d0c0c",
     bg      = "#171717",
     bg1     = "#1d1c19",
@@ -49,6 +13,7 @@ local __color__ = {
 
     red0    = "#c03030",
     red     = "#f43838",
+    red1    = "#e86262",
     yellow  = "#f4df30",
     aqua    = "#6a9589", -- hint
     teal0   = "#08272b",
@@ -61,50 +26,63 @@ local __color__ = {
     grey2   = "#71767e",
     green0  = "#273621",
     green   = "#98cc6c",
+    green1  = "#97dd88",
     orange  = "#e58f35",
-    brown   = "#b38318",
-    milky   = "#eec982",
+    -- brown   = "#9f7c2e",
+    milky   = "#fcd283",
 }
 
 local hi = vim.api.nvim_set_hl
 
 -- Basic Editor
-hi(0, "ColorColumn",  { bg = __color__.grey0 })
-hi(0, "Conceal",      { fg = __color__.grey2 })
-hi(0, "CursorLine",   { bg = __color__.grey0 })
-hi(0, "Directory",    { fg = __color__.blue })
-hi(0, "DiffAdd",      { bg = __color__.green0 })
-hi(0, "DiffChange",   { bg = __color__.teal0 })
-hi(0, "DiffDelete",   { fg = __color__.red0 })
-hi(0, "DiffText",     { bg = __color__.teal01 })
-hi(0, "LineNr",       { fg = __color__.grey1 })
-hi(0, "Normal",       { bg = __color__.bg, fg = __color__.fg })
-hi(0, "NormalFloat",  { bg = __color__.bg0, blend = 7 })
-hi(0, "FloatTitle",   { bg = __color__.bg0, blend = 7 })
-hi(0, "StatusLine",   { bg = __color__.bg0, fg = __color__.fg1 })
-hi(0, "Visual",       { bg = __color__.visual })
-hi(0, "CurSearch",    { bg = __color__.milky, fg = __color__.bg })
-hi(0, "Search",       { bg = __color__.brown, fg = __color__.bg })
-hi(0, "Pmenu",        { bg = __color__.bg1, fg = __color__.fg })
-hi(0, "PmenuSel",     { bg = __color__.visual, fg = __color__.fg })
-hi(0, "TabLine",      { bg = __color__.bg0, fg = __color__.fg1 })
-hi(0, "TabLineSel",   { bg = __color__.visual, fg = __color__.fg1 })
+hi(0, "ColorColumn",  { bg = C.grey0 })
+hi(0, "Conceal",      { fg = C.grey2 })
+hi(0, "CursorLine",   { bg = C.grey0 })
+hi(0, "Directory",    { fg = C.blue })
+hi(0, "DiffAdd",      { bg = C.green0 })
+hi(0, "DiffChange",   { bg = C.teal0 })
+hi(0, "DiffDelete",   { fg = C.red0 })
+hi(0, "DiffText",     { bg = C.teal01 })
+hi(0, "ErrorMsg",     { fg = C.red })
+hi(0, "LineNr",       { fg = C.grey1 })
+hi(0, "MatchParen",   { bg = C.grey1, bold = true })
+hi(0, "MsgArea",      { fg = C.fg })
+hi(0, "Normal",       { bg = C.bg, fg = C.fg })
+hi(0, "NormalFloat",  { bg = C.bg0, blend = 7 })
+hi(0, "NonText",      { fg = C.grey1 })
+hi(0, "FloatTitle",   { bg = C.bg0, blend = 7 })
+hi(0, "StatusLine",   { bg = C.bg0, fg = C.fg1 })
+hi(0, "Visual",       { bg = C.visual })
+hi(0, "CurSearch",    { bg = C.milky, fg = C.bg, bold = true })
+hi(0, "Search",       { bg = C.grey1 })
+hi(0, "Pmenu",        { bg = C.bg1, fg = C.fg })
+hi(0, "PmenuSel",     { bg = C.visual, fg = C.fg })
+hi(0, "PmenuThumb",   { bg = C.grey0 })
+hi(0, "TabLine",      { bg = C.bg0, fg = C.fg1 })
+hi(0, "TabLineSel",   { bg = C.visual, fg = C.fg1 })
+hi(0, "Title",        { fg = C.fg1 })
+hi(0, "WarningMsg",   { fg = C.yellow })
 
 -- Syntax
-hi(0, "Comment", { fg = __color__.grey })
-hi(0, "String",    { fg = __color__.green })
+hi(0, "Comment",   { fg = C.grey })
+hi(0, "Character", { link = "String" })
+hi(0, "String",    { fg = C.green })
+
+hi(0, "Added",   { fg = C.green1 })
+hi(0, "Changed", { fg = C.milky })
+hi(0, "Removed", { fg = C.red1 })
 
 -- Diagnostic
--- hi(0, "DiagnosticOk",             { fg = __color__.ok })
-hi(0, "DiagnosticError",          { fg = __color__.red })
-hi(0, "DiagnosticInfo",           { fg = __color__.teal })
-hi(0, "DiagnosticHint",           { fg = __color__.aqua })
-hi(0, "DiagnosticWarn",           { fg = __color__.yellow })
--- hi(0, "DiagnosticUnderlineOk",    { sp = __color__.ok,     undercurl = true })
-hi(0, "DiagnosticUnderlineError", { sp = __color__.red,    undercurl = true })
-hi(0, "DiagnosticUnderlineInfo",  { sp = __color__.teal,   undercurl = true })
-hi(0, "DiagnosticUnderlineHint",  { sp = __color__.aqua,   undercurl = true })
-hi(0, "DiagnosticUnderlineWarn",  { sp = __color__.yellow, undercurl = true })
+-- hi(0, "DiagnosticOk",             { fg = C.ok })
+hi(0, "DiagnosticError",          { fg = C.red })
+hi(0, "DiagnosticInfo",           { fg = C.teal })
+hi(0, "DiagnosticHint",           { fg = C.aqua })
+hi(0, "DiagnosticWarn",           { fg = C.yellow })
+-- hi(0, "DiagnosticUnderlineOk",    { sp = C.ok,     undercurl = true })
+hi(0, "DiagnosticUnderlineError", { sp = C.red,    undercurl = true })
+hi(0, "DiagnosticUnderlineInfo",  { sp = C.teal,   undercurl = true })
+hi(0, "DiagnosticUnderlineHint",  { sp = C.aqua,   undercurl = true })
+hi(0, "DiagnosticUnderlineWarn",  { sp = C.yellow, undercurl = true })
 
 -- Treesitter
 -- LSP
@@ -112,31 +90,55 @@ hi(0, "DiagnosticUnderlineWarn",  { sp = __color__.yellow, undercurl = true })
 ------------------------------------------------------------
 
 
--- hi(0, "Identifier", { fg = C.blue })
-hi(0, "Identifier", { fg = __color__.fg })
+-- hi(0, "Identifier", {}) --	any variable name
+-- hi(0, "Function", {}) --	function name (also: methods for classes)
+-- 
+-- hi(0, "Statement", {}) --	any statement
+-- hi(0, "Conditional", {}) --	if, then, else, endif, switch, etc.
+-- hi(0, "Repeat", {}) --		for, do, while, etc.
+-- hi(0, "Label", {}) --		case, default, etc.
+-- hi(0, "Operator", {}) --	"sizeof", "+", "*", etc.
+-- hi(0, "Keyword", {}) --		any other keyword
+-- hi(0, "Exception", {}) --	try, catch, throw
+-- 
+-- hi(0, "PreProc", {}) --		generic Preprocessor
+-- hi(0, "Include", {}) --		preprocessor #include
+-- hi(0, "Define", {}) --		preprocessor #define
+-- hi(0, "Macro", {}) --		same as Define
+-- hi(0, "PreCondit", {}) --	preprocessor #if, #else, #endif, etc.
+-- 
+-- hi(0, "Type", {}) --		int, long, char, etc.
+-- hi(0, "StorageClass", {}) --	static, register, volatile, etc.
+-- hi(0, "Structure", {}) --	struct, union, enum, etc.
+-- hi(0, "Typedef", {}) --		a typedef
+-- 
+-- hi(0, "Special", {}) --		any special symbol
+-- hi(0, "SpecialChar", {}) --	special character in a constant
+-- hi(0, "Tag", {}) --		you can use CTRL-] on this
+-- hi(0, "Delimiter", {}) --	character that needs attention
+-- hi(0, "SpecialComment", {}) --	special things inside a comment
+-- hi(0, "Debug", {}) --		debugging statements
+-- 
+-- hi(0, "Ignore", {}) --		left blank, hidden  |hl-Ignore|
+
+----
+
 hi(0, "Constant", { fg = C.blue })
-hi(0, "Type", { fg = C.fg1 })
+-- hi(0, "Number", { link = "Normal" }) -- a number constant: 234, 0xff
+hi(0, "Boolean", { fg = C.yellow }) -- a boolean constant: TRUE, false
+-- hi(0, "Float", { link = "Normal" }) -- a floating point constant: 2.3e10
+
+-- hi(0, "Identifier", { fg = C.blue })
+-- hi(0, "Constant", { fg = C.blue })
 -- hi(0, "Special", { fg = C.red0 })
 -- hi(0, "Delimiter", { fg = C.red0 })
-hi(0, "Keyword", { fg = C.orange })
-hi(0, "Conditional", { fg = C.orange })
-hi(0, "Statement", { fg = __color__.fg })
-hi(0, "PreProc", { fg = C.grey5 })
+-- hi(0, "Keyword", { fg = C.orange })
+-- hi(0, "Conditional", { fg = C.orange })
+-- hi(0, "Statement", { fg = C.fg })
+-- hi(0, "PreProc", { fg = C.grey5 })
 -- hi(0, "Function", { fg = C.fg5 })
-hi(0, "Function", { fg = __color__.fg })
-hi(0, "dartBraces", { fg = __color__.fg })
-hi(0, "Label", { fg = __color__.aqua })
-
--- hi(0, "Added", { fg = "#b3f6c0" })
-
-hi(0, "ErrorMsg", { fg = __color__.red })
-hi(0, "WarningMsg", { fg = __color__.yellow })
--- hi(0, "MatchParen", {})
-
-
--- hi(0, "@variable", { fg = C.grey2 })
-hi(0, "@variable", { fg = __color__.fg })
-hi(0, "Title", { fg = __color__.fg })
+-- hi(0, "Function", { fg = C.fg })
+-- hi(0, "Label", { fg = C.aqua })
 
 -- Terminal colors
 vim.g.terminal_color_0 = ""
