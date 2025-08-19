@@ -11,6 +11,7 @@ local C = {
     fg1     = "#c8c093",
     visual  = "#223249",
 
+    red01   = "#6b0606",
     red0    = "#c03030",
     red     = "#f43838",
     red1    = "#e86262",
@@ -21,14 +22,14 @@ local C = {
     teal    = "#678897", -- info
     blue    = "#96a6c8",
     grey0   = "#252528",
+    grey01  = "#2e2e38",
     grey    = "#7a857a",
     grey1   = "#5a5a5a",
     grey2   = "#71767e",
     green0  = "#273621",
     green   = "#98cc6c",
     green1  = "#97dd88",
-    orange  = "#e58f35",
-    -- brown   = "#9f7c2e",
+    orange  = "#c88c38",
     milky   = "#fcd283",
 }
 
@@ -45,7 +46,7 @@ hi(0, "DiffDelete",   { fg = C.red0 })
 hi(0, "DiffText",     { bg = C.teal01 })
 hi(0, "ErrorMsg",     { fg = C.red })
 hi(0, "LineNr",       { fg = C.grey1 })
-hi(0, "MatchParen",   { bg = C.grey1, bold = true })
+hi(0, "MatchParen",   { fg = C.milky, bold = true })
 hi(0, "MsgArea",      { fg = C.fg })
 hi(0, "Normal",       { bg = C.bg, fg = C.fg })
 hi(0, "NormalFloat",  { bg = C.bg0, blend = 7 })
@@ -54,7 +55,7 @@ hi(0, "FloatTitle",   { bg = C.bg0, blend = 7 })
 hi(0, "StatusLine",   { bg = C.bg0, fg = C.fg1 })
 hi(0, "Visual",       { bg = C.visual })
 hi(0, "CurSearch",    { bg = C.milky, fg = C.bg, bold = true })
-hi(0, "Search",       { bg = C.grey1 })
+hi(0, "Search",       { bg = C.grey01 })
 hi(0, "Pmenu",        { bg = C.bg1, fg = C.fg })
 hi(0, "PmenuSel",     { bg = C.visual, fg = C.fg })
 hi(0, "PmenuThumb",   { bg = C.grey0 })
@@ -68,9 +69,14 @@ hi(0, "Comment",   { fg = C.grey })
 hi(0, "Character", { link = "String" })
 hi(0, "String",    { fg = C.green })
 
-hi(0, "Added",   { fg = C.green1 })
-hi(0, "Changed", { fg = C.milky })
-hi(0, "Removed", { fg = C.red1 })
+hi(0, "Ignore",    { fg = C.grey1 })
+hi(0, "Error",     { bg = C.red01 })
+
+hi(0, "Todo",      { fg = C.milky })
+
+hi(0, "Added",     { fg = C.green1 })
+hi(0, "Changed",   { fg = C.milky })
+hi(0, "Removed",   { fg = C.red1 })
 
 -- Diagnostic
 -- hi(0, "DiagnosticOk",             { fg = C.ok })
@@ -90,43 +96,42 @@ hi(0, "DiagnosticUnderlineWarn",  { sp = C.yellow, undercurl = true })
 ------------------------------------------------------------
 
 
--- hi(0, "Identifier", {}) --	any variable name
--- hi(0, "Function", {}) --	function name (also: methods for classes)
--- 
--- hi(0, "Statement", {}) --	any statement
--- hi(0, "Conditional", {}) --	if, then, else, endif, switch, etc.
--- hi(0, "Repeat", {}) --		for, do, while, etc.
--- hi(0, "Label", {}) --		case, default, etc.
--- hi(0, "Operator", {}) --	"sizeof", "+", "*", etc.
--- hi(0, "Keyword", {}) --		any other keyword
--- hi(0, "Exception", {}) --	try, catch, throw
--- 
--- hi(0, "PreProc", {}) --		generic Preprocessor
--- hi(0, "Include", {}) --		preprocessor #include
--- hi(0, "Define", {}) --		preprocessor #define
--- hi(0, "Macro", {}) --		same as Define
--- hi(0, "PreCondit", {}) --	preprocessor #if, #else, #endif, etc.
--- 
--- hi(0, "Type", {}) --		int, long, char, etc.
--- hi(0, "StorageClass", {}) --	static, register, volatile, etc.
--- hi(0, "Structure", {}) --	struct, union, enum, etc.
--- hi(0, "Typedef", {}) --		a typedef
--- 
--- hi(0, "Special", {}) --		any special symbol
--- hi(0, "SpecialChar", {}) --	special character in a constant
--- hi(0, "Tag", {}) --		you can use CTRL-] on this
--- hi(0, "Delimiter", {}) --	character that needs attention
--- hi(0, "SpecialComment", {}) --	special things inside a comment
--- hi(0, "Debug", {}) --		debugging statements
--- 
--- hi(0, "Ignore", {}) --		left blank, hidden  |hl-Ignore|
+hi(0, "Constant", {})       -- any constant
+hi(0, "Number",   {})       -- a number constant: 234, 0xff
+hi(0, "Boolean",  {})       -- a boolean constant: TRUE, false
+hi(0, "Float",    {})       -- a floating point constant: 2.3e10
+
+hi(0, "Identifier", {})     -- any variable name
+hi(0, "Function",   {})     -- function name (also: methods for classes)
+
+hi(0, "Statement",   {})    -- any statement
+hi(0, "Conditional", { fg = C.fg1 })    -- if, then, else, endif, switch, etc.
+hi(0, "Repeat",      {})    -- for, do, while, etc.
+hi(0, "Label",       {})    -- case, default, etc.
+hi(0, "Operator",    {})    -- "sizeof", "+", "*", etc.
+hi(0, "Keyword",     { fg = C.fg1 })    -- any other keyword
+hi(0, "Exception",   {})    -- try, catch, throw
+
+hi(0, "PreProc",   {})      -- generic Preprocessor
+hi(0, "Include",   {})      -- preprocessor #include
+hi(0, "Define",    {})      -- preprocessor #define
+hi(0, "Macro",     {})      -- same as Define
+hi(0, "PreCondit", {})      -- preprocessor #if, #else, #endif, etc.
+
+hi(0, "Type",         {})   -- int, long, char, etc.
+hi(0, "StorageClass", {})   -- static, register, volatile, etc.
+hi(0, "Structure",    {})   -- struct, union, enum, etc.
+hi(0, "Typedef",      {})   -- a typedef
+
+hi(0, "Special",        {}) -- any special symbol
+hi(0, "SpecialChar",    {}) -- special character in a constant
+hi(0, "Tag",            {}) -- you can use CTRL-] on this
+hi(0, "Delimiter",      {}) -- character that needs attention
+hi(0, "SpecialComment", {}) -- special things inside a comment
+hi(0, "Debug",          {}) -- debugging statements
+
 
 ----
-
-hi(0, "Constant", { fg = C.blue })
--- hi(0, "Number", { link = "Normal" }) -- a number constant: 234, 0xff
-hi(0, "Boolean", { fg = C.yellow }) -- a boolean constant: TRUE, false
--- hi(0, "Float", { link = "Normal" }) -- a floating point constant: 2.3e10
 
 -- hi(0, "Identifier", { fg = C.blue })
 -- hi(0, "Constant", { fg = C.blue })
