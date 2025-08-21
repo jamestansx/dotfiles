@@ -20,6 +20,7 @@ local C = {
     teal0   = "#08272b",
     teal01  = "#00434d",
     teal    = "#678897", -- info
+    teal1   = "#84a0ad",
     blue    = "#96a6c8",
     grey0   = "#252528",
     grey01  = "#2e2e38",
@@ -29,7 +30,8 @@ local C = {
     green0  = "#273621",
     green   = "#98cc6c",
     green1  = "#97dd88",
-    orange  = "#c88c38",
+    orange  = "#d0a146",
+    milky0  = "#DFBF81",
     milky   = "#fcd283",
 }
 
@@ -65,8 +67,8 @@ hi(0, "Title",        { fg = C.fg1 })
 hi(0, "WarningMsg",   { fg = C.yellow })
 
 -- Syntax
-hi(0, "Comment",   { fg = C.grey })
-hi(0, "Character", { link = "String" })
+hi(0, "Comment",   { fg = C.grey1 })
+hi(0, "Character", { fg = C.green })
 hi(0, "String",    { fg = C.green })
 
 hi(0, "Ignore",    { fg = C.grey1 })
@@ -96,7 +98,7 @@ hi(0, "DiagnosticUnderlineWarn",  { sp = C.yellow, undercurl = true })
 ------------------------------------------------------------
 
 
-hi(0, "Constant", {})       -- any constant
+hi(0, "Constant", { fg = C.orange })       -- any constant
 hi(0, "Number",   {})       -- a number constant: 234, 0xff
 hi(0, "Boolean",  {})       -- a boolean constant: TRUE, false
 hi(0, "Float",    {})       -- a floating point constant: 2.3e10
@@ -104,27 +106,27 @@ hi(0, "Float",    {})       -- a floating point constant: 2.3e10
 hi(0, "Identifier", {})     -- any variable name
 hi(0, "Function",   {})     -- function name (also: methods for classes)
 
-hi(0, "Statement",   {})    -- any statement
-hi(0, "Conditional", { fg = C.fg1 })    -- if, then, else, endif, switch, etc.
-hi(0, "Repeat",      {})    -- for, do, while, etc.
-hi(0, "Label",       {})    -- case, default, etc.
+hi(0, "Statement",   { fg = C.milky0 })    -- any statement
+hi(0, "Conditional", { fg = C.milky0 })    -- if, then, else, endif, switch, etc.
+hi(0, "Repeat",      { fg = C.milky0 })    -- for, do, while, etc.
+hi(0, "Label",       { fg = C.milky0 })    -- case, default, etc.
 hi(0, "Operator",    {})    -- "sizeof", "+", "*", etc.
-hi(0, "Keyword",     { fg = C.fg1 })    -- any other keyword
+hi(0, "Keyword",     { fg = C.milky0 })    -- any other keyword
 hi(0, "Exception",   {})    -- try, catch, throw
 
-hi(0, "PreProc",   {})      -- generic Preprocessor
+hi(0, "PreProc",   { fg = C.grey2 })      -- generic Preprocessor
 hi(0, "Include",   {})      -- preprocessor #include
 hi(0, "Define",    {})      -- preprocessor #define
-hi(0, "Macro",     {})      -- same as Define
+hi(0, "Macro",     { fg = C.teal1 })      -- same as Define
 hi(0, "PreCondit", {})      -- preprocessor #if, #else, #endif, etc.
 
-hi(0, "Type",         {})   -- int, long, char, etc.
+hi(0, "Type",         { fg = C.teal1 })   -- int, long, char, etc.
 hi(0, "StorageClass", {})   -- static, register, volatile, etc.
-hi(0, "Structure",    {})   -- struct, union, enum, etc.
+hi(0, "Structure",    { fg = C.grey })   -- struct, union, enum, etc.
 hi(0, "Typedef",      {})   -- a typedef
 
-hi(0, "Special",        {}) -- any special symbol
-hi(0, "SpecialChar",    {}) -- special character in a constant
+hi(0, "Special",        { fg = C.orange }) -- any special symbol
+hi(0, "SpecialChar",    { fg = C.orange }) -- special character in a constant
 hi(0, "Tag",            {}) -- you can use CTRL-] on this
 hi(0, "Delimiter",      {}) -- character that needs attention
 hi(0, "SpecialComment", {}) -- special things inside a comment
