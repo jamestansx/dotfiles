@@ -22,10 +22,10 @@ local filename = function() return "%f%( %h%w%m%r%)" end
 local ruler = function() return "%-6.(%l,%v%) (%P)" end
 local diagcount = function(buf) return state.diagcount[buf] or "" end
 
-local gitinfo = function()
-    local summary = vim.b.minigit_summary_string or ""
+local gitinfo = function(buf)
+    local summary = vim.b[buf].minigit_summary_string or ""
     if summary == "" then return "" end
-    return (" %s"):format(summary)
+    return ("%s"):format(summary) --   
 end
 
 local fileinfo = function()
@@ -67,8 +67,9 @@ local join_component = function(comp) return comp == "" and "" or (" %s "):forma
 M.statusline = function()
     local bufnr = vim.api.nvim_get_current_buf()
     local comp = {
-        filename(), gitinfo(), diagcount(bufnr),
-        "%=", "%{v:lua.require'me.lsp.status'.get_progress()}", "%<%=",
+        filename(), gitinfo(bufnr), diagcount(bufnr),
+        -- TODO: lsp progress dynamically set compact mode
+        "%{v:lua.require'me.lsp.status'.get_progress(1)}", "%<%=",
         fileinfo(), ruler(),
     }
 
