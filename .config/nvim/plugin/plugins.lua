@@ -155,7 +155,7 @@ later(function()
 end)
 
 later(function()
-    add("echasnovski/mini.pick")
+    add("nvim-mini/mini.pick")
     require("mini.pick").setup({ options = { content_from_bottom = true } })
 
     vim.ui.select = MiniPick.ui_select
@@ -169,7 +169,7 @@ later(function()
 end)
 
 later(function()
-    add("echasnovski/mini-git")
+    add("nvim-mini/mini-git")
     require("mini.git").setup()
 
     add("mbbill/undotree")
