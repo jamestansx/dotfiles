@@ -137,13 +137,13 @@ later(function()
     local leap = require("leap")
     local user = require("leap.user")
 
-    user.set_repeat_keys("<tab>", "<s-tab>", { relative_directions = true })
+    user.set_repeat_keys("<enter>", "<backspace>", { relative_directions = true })
     leap.opts.equivalence_classes = { " \t\r\n", "({[", ")}]", "'\"`" }
     leap.opts.special_keys = {
-        next_target = "<tab>",
-        prev_target = "<s-tab>",
+        next_target = "<enter>",
+        prev_target = "<backspace>",
         next_group = "<space>",
-        prev_group = "<s-space>",
+        prev_group = "<backspace>",
     }
 
     vim.keymap.set({"n", "x", "o"}, "s", function() leap.leap({}) end)
