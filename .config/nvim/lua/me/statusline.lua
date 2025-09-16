@@ -25,7 +25,7 @@ local diagcount = function(buf) return state.diagcount[buf] or "" end
 local gitinfo = function(buf)
     local summary = vim.b[buf].minigit_summary_string or ""
     if summary == "" then return "" end
-    return ("%s"):format(summary) --   
+    return (" %s"):format(summary) --   
 end
 
 local fileinfo = function()
