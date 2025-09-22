@@ -137,7 +137,6 @@ later(function()
     local leap = require("leap")
     local user = require("leap.user")
 
-    user.set_repeat_keys("<enter>", "<backspace>", { relative_directions = true })
     leap.opts.equivalence_classes = { " \t\r\n", "({[", ")}]", "'\"`" }
     leap.opts.special_keys = {
         next_target = "<enter>",
