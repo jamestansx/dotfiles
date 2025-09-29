@@ -49,3 +49,5 @@
 [rerere]
     autoupdate = true
     enabled = true
+[color]
+	ui = auto
