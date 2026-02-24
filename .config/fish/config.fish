@@ -1,4 +1,8 @@
 if status is-login; and test -z "$WAYLAND_DISPLAY" -a "$XDG_VTNR" = 1
+    # Checkout https://github.com/swaywm/sway/wiki#i-cant-open-links-in-external-applications-in-firefox
+    set -gx MOZ_DBUS_REMOTE 1
+    set -gx MOZ_ENABLE_WAYLAND 1
+
     exec niri-session -l
 end
 
