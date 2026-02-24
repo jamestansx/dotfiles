@@ -1,13 +1,15 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 later(function()
-    require("vim._extui").enable({})
+    require("vim._core.ui2").enable({})
     vim.cmd("packadd! cfilter")
     vim.cmd("packadd! termdebug")
 end)
 
 now(function()
     vim.go.statusline = require("me.statusline").setup()
+
+    vim.cmd.colorscheme("voidf")
 end)
 
 now(function()
@@ -17,7 +19,7 @@ now(function()
     add("justinmk/vim-dirvish")
 
     -- sort directories with dotfiles first
-    vim.g.dirvish_mode = [[:sort i | sort ,^.*[\/],]]
+    vim.g.dirvish_mode = [[:sort i | sort ,^.*[\/], | silent keeppatterns g/\.o/d _]]
 
     -- required 'expr' to be true
     local eat_space = function(key)
@@ -33,10 +35,17 @@ now(function()
         group = augroup,
         pattern = "dirvish",
         callback = function(args)
+            vim.wo.list = false
             local opts = { buffer = args.buf, expr = true }
 
             vim.keymap.set("ca", "e", eat_space("e %"), opts)
             vim.keymap.set("ca", "mkdir", eat_space("!mkdir -p %"), opts)
+            vim.keymap.set("ca", "mv", function()
+                -- TODO: handle directory and filename
+                -- TODO: put cursor in front and close the quote
+                local line = vim.fn.getline(".")
+                return eat_space("!mv " .. "'" .. line .. "' " .. "'" .. vim.fs.dirname(line) .. "/'")() .. "<left>"
+            end, opts)
         end,
     })
 end)
@@ -67,17 +76,18 @@ now(function()
         "rust_analyzer",
         "tsserver",
         "dartls",
+        "tinymist",
     })
 
+    -- vim.lsp.log.set_format_func(vim.inspect)
     later(function()
-        vim.lsp.log.set_format_func(vim.inspect)
         vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
     end)
 end)
 
 -- auto-completion
 later(function()
-    add({ source = "Saghen/blink.cmp", checkout = "v1.7.0" })
+    add({ source = "Saghen/blink.cmp", checkout = "v1.9.1" })
 
     require("blink.cmp").setup({
         keymap = {
@@ -121,7 +131,7 @@ later(function()
     require("conform").setup({
         log_level = vim.log.levels.ERROR,
         formatters_by_ft = {
-            dart = { "dart_format", lsp_format = "fallback" },
+            dart = { "dart_format", lsp_format = "prefer" },
             rust = { "rustfmt" },
             ["_"] = { "trim_whitespace" },
         },
@@ -130,7 +140,7 @@ end)
 
 later(function()
     add({
-        source = "ggandor/leap.nvim",
+        source = "https://codeberg.org/andyg/leap.nvim",
         depends = { "tpope/vim-repeat" },
     })
 
