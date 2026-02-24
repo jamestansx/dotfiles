@@ -258,6 +258,10 @@ spawn-at-startup "foot" "--server"
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     _JAVA_AWT_WM_NONREPARENTING "1"
+
+    // https://github.com/swaywm/sway/wiki#i-cant-open-links-in-external-applications-in-firefox
+    MOZ_DBUS_REMOTE "1"
+    MOZ_ENABLE_WAYLAND "1"
 }
 
 hotkey-overlay {
