@@ -231,7 +231,7 @@ layout {
     }
 
     tab-indicator {
-            place-within-column
+            // place-within-column
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
