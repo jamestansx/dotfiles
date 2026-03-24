@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("me.autocmd", { clear = true })
+local augroup = require("me").augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("TextYankPost", {

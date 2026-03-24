@@ -1,23 +1,17 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_python3_provider = 0
-
 vim.o.confirm = true
 vim.o.colorcolumn = "+1"
 vim.o.exrc = true
 vim.o.mouse = "a"
 vim.o.mousemodel = "extend"
 vim.o.selection = "old" -- do not select past line
-vim.o.shada = "'100,<50,s10,:1000,/100,@100,h,r/tmp"
 vim.o.synmaxcol = 200
 vim.o.termguicolors = true
 vim.o.undofile = true
 vim.o.virtualedit = "block"
-vim.opt.isfname:append("@-@")
+-- vim.opt.isfname:append("@-@")
 -- set includeexpr=substitute(v:fname,'^[^\/]*/','','')
 
 -- editing
@@ -26,7 +20,7 @@ vim.o.scrolloff = 5
 vim.o.sidescroll = 3
 vim.o.sidescrolloff = 3
 vim.opt.matchpairs:append("<:>")
-vim.opt.diffopt:append("algorithm:histogram,indent-heuristic")
+vim.opt.diffopt:append("algorithm:histogram")
 
 -- completion
 vim.o.completeopt = "menuone,noselect,fuzzy"
@@ -40,8 +34,8 @@ vim.opt.wildignore:append("*/__pycache__/*,*/node_modules/*")
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 vim.o.numberwidth = 1
-vim.o.number = true
-vim.o.relativenumber = true
+-- vim.o.number = true
+-- vim.o.relativenumber = true
 
 -- consistent window splitting
 vim.o.splitbelow = true
@@ -72,24 +66,27 @@ vim.o.linebreak = true
 
 vim.o.list = true
 vim.o.listchars = table.concat({
-    "extends:🠞",  -- U+1F81E
+    "extends:…",  -- U+2026
     "nbsp:⦸",     -- U+29B8
-    "precedes:🠜", -- U+1F81C
+    "precedes:…", -- U+2026
     "tab:  »",    -- U+00BB
     "trail:·",    -- U+00B7
 }, ",")
 
 if vim.fn.executable("rg") == 1 then
     vim.o.grepprg = "rg --vimgrep --smart-case -uu"
-    vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
 
 -- ftplugin may include 'o' option
-local augroup = vim.api.nvim_create_augroup("me.options", { clear = true })
-vim.api.nvim_create_autocmd("FileType", { group = augroup, command = "setlocal fo-=o" })
+vim.api.nvim_create_autocmd("FileType", {
+    group = require("me").augroup,
+    callback = function()
+        vim.cmd("setlocal fo-=o")
+    end
+})
 
 vim.diagnostic.config({
     severity_sort = true,
-    jump = { on_jump = function() vim.diagnostic.open_float() end },
+    jump = { on_jump = vim.diagnostic.open_float },
     signs = { severity = { min = "WARN", max = "ERROR" } },
 })

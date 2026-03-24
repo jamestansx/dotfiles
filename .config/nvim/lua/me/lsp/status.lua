@@ -2,7 +2,7 @@ local M = {}
 local _internal = {
     timer = nil,
     spinner_idx = 0,
-    augroup = vim.api.nvim_create_augroup("me.lsp.status", { clear = true }),
+    augroup = require("me").augroup,
 }
 local config = {
     max_message_width = 17,

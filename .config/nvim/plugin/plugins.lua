@@ -1,4 +1,5 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local augroup = require("me").augroup
 
 later(function()
     require("vim._core.ui2").enable({})
@@ -30,12 +31,12 @@ now(function()
         end
     end
 
-    local augroup = vim.api.nvim_create_augroup("me.dirvish", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
         group = augroup,
         pattern = "dirvish",
         callback = function(args)
-            vim.wo.list = false
+            local winid = vim.api.nvim_get_current_win()
+            vim.wo[winid][0].list = false
             local opts = { buffer = args.buf, expr = true }
 
             vim.keymap.set("ca", "e", eat_space("e %"), opts)
@@ -52,7 +53,6 @@ end)
 
 -- lspconfig
 now(function()
-    local augroup = vim.api.nvim_create_augroup("me.lsp", { clear = true })
     vim.api.nvim_create_autocmd("LspAttach", {
         group = augroup,
         callback = function(args)

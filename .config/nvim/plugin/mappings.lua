@@ -1,6 +1,8 @@
 -- TODO: \v in searches for very magic
 -- :h :DiffOrig
 
+local map = vim.keymap.set
+
 do -- https://github.com/mhinz/vim-galore#saner-command-line-history
     -- wildmenumode() ? <key> : <fallback>
     local nav_hist = function(key, fallback)
@@ -9,32 +11,32 @@ do -- https://github.com/mhinz/vim-galore#saner-command-line-history
         end
     end
 
-    vim.keymap.set("c", "<c-p>", nav_hist("<c-p>", "<up>"), { expr = true })
-    vim.keymap.set("c", "<c-n>", nav_hist("<c-n>", "<down>"), { expr = true })
+    map("c", "<c-p>", nav_hist("<c-p>", "<up>"), { expr = true })
+    map("c", "<c-n>", nav_hist("<c-n>", "<down>"), { expr = true })
 end
 
 -- center search result
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "*", "*zzzv")
-vim.keymap.set("n", "#", "#zzzv")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "*", "*zzzv")
+map("n", "#", "#zzzv")
 
 -- split (un-join) line
-vim.keymap.set("n", "gj", "i<c-j><esc>k$")
+map("n", "gj", "i<c-j><esc>k$")
 
 -- search within visual selection
-vim.keymap.set("x", "/", "<esc>/\\%V")
-vim.keymap.set("x", "?", "<esc>?\\%V")
+map("x", "/", "<esc>/\\%V")
+map("x", "?", "<esc>?\\%V")
 
 -- TODO: join line remove spaces
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "gJ", "mzgJ`z")
-vim.keymap.set("x", "<", "<gv")
-vim.keymap.set("x", ">", ">gv")
+map("n", "J", "mzJ`z")
+map("n", "gJ", "mzgJ`z")
+map("x", "<", "<gv")
+map("x", ">", ">gv")
 
 -- home row
-vim.keymap.set("", "H", "^")
-vim.keymap.set("", "L", "$")
+map("", "H", "^")
+map("", "L", "$")
 
 do -- smart jk (wrap)
     -- v:count || mode(1)[0:1] == 'no' ? <key> : g<key>
@@ -47,19 +49,19 @@ do -- smart jk (wrap)
         end
     end
 
-    vim.keymap.set({ "n", "x" }, "j", mov("j"), { expr = true })
-    vim.keymap.set({ "n", "x" }, "k", mov("k"), { expr = true })
+    map({ "n", "x" }, "j", mov("j"), { expr = true })
+    map({ "n", "x" }, "k", mov("k"), { expr = true })
 end
 
 -- select last inserted text
-vim.keymap.set("n", "gV", "`[v`]")
+map("n", "gV", "`[v`]")
 
 -- yank/paste/delete
-vim.keymap.set("x", "Y", '"+y')
-vim.keymap.set("x", "y", "zy")
-vim.keymap.set("n", "p", "zp")
-vim.keymap.set("n", "P", "zP")
-vim.keymap.set("x", "x", '"_d')
+map("x", "Y", '"+y')
+map("x", "y", "zy")
+map("n", "p", "zp")
+map("n", "P", "zP")
+map("x", "x", '"_d')
 
 do -- block edit
     -- mode() =~ #'[vV]' ? '<c-v>^o^I' : 'I'
@@ -72,6 +74,6 @@ do -- block edit
         end
     end
 
-    vim.keymap.set("x", "I", block("I", "^", "^"), { expr = true })
-    vim.keymap.set("x", "A", block("A", "0", "$"), { expr = true })
+    map("x", "I", block("I", "^", "^"), { expr = true })
+    map("x", "A", block("A", "0", "$"), { expr = true })
 end

@@ -77,7 +77,7 @@ M.statusline = function()
 end
 
 M.setup = function()
-    local augroup = vim.api.nvim_create_augroup("me.statusline", { clear = true })
+    local augroup = require("me").augroup
     vim.api.nvim_create_autocmd("DiagnosticChanged", {
         group = augroup,
         callback = vim.schedule_wrap(diag_cb),
