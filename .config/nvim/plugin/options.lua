@@ -31,9 +31,9 @@ vim.o.wildoptions = "fuzzy,pum,tagfile"
 vim.opt.wildignore:append("*/__pycache__/*,*/node_modules/*")
 
 -- highlight 'number' column instead of indentation
-vim.o.cursorline = true
-vim.o.cursorlineopt = "number"
-vim.o.numberwidth = 1
+-- vim.o.cursorline = true
+-- vim.o.cursorlineopt = "number"
+-- vim.o.numberwidth = 1
 -- vim.o.number = true
 -- vim.o.relativenumber = true
 

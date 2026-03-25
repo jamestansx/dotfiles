@@ -1,6 +1,8 @@
 local lsp = require("me.lsp")
 local command = vim.api.nvim_create_user_command
 
+-- TODO: Nvim has upstream all these commands. However, the Restart will
+-- trigger the LspDetach event before the lsp actually getting detached.
 command("LspRestart", function(kwargs)
     lsp.restart(kwargs.fargs, kwargs.bang)
 end, { nargs = "*", complete = lsp.complete_client_names, bang = true })

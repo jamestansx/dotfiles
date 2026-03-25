@@ -8,17 +8,25 @@ autocmd("TextYankPost", {
     end,
 })
 
-autocmd("BufReadPost", {
+-- :help restore-cursor
+autocmd("BufReadPre", {
     group = augroup,
     callback = function()
-        local excludes = { "gitcommit", "gitrebase", "help" }
-        if vim.tbl_contains(excludes, vim.bo.ft) then return end
+        autocmd("FileType", {
+            buffer = 0,
+            once = true,
+            callback = function()
+                local ft = vim.bo.ft
+                local excluded = ft:find("commit") or ft:find("rebase")
+                if vim.o.diff or excluded then return end
 
-        -- restore last cursor position
-        local m = vim.api.nvim_buf_get_mark(0, '"')
-        if m[1] > 0 and m[1] <= vim.api.nvim_buf_line_count(0) then
-            pcall(vim.api.nvim_win_set_cursor, 0, m)
-        end
+                -- restore last cursor position
+                local m = vim.api.nvim_buf_get_mark(0, '"')
+                if m[1] > 0 and m[1] <= vim.api.nvim_buf_line_count(0) then
+                    pcall(vim.api.nvim_win_set_cursor, 0, m)
+                end
+            end,
+        })
     end,
 })
 
@@ -26,7 +34,6 @@ autocmd("BufNewFile", {
     group = augroup,
     callback = function()
         autocmd("BufWritePre", {
-            group = augroup,
             buffer = 0,
             once = true,
             callback = function(args)
