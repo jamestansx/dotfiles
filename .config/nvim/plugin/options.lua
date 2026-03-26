@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 vim.o.confirm = true
 vim.o.colorcolumn = "+1"
 vim.o.exrc = true
@@ -27,7 +24,7 @@ vim.o.completeopt = "menuone,noselect,fuzzy"
 vim.o.pumheight = 5
 vim.o.wildcharm = (""):byte()
 vim.o.wildmode = "longest:full,full"
-vim.o.wildoptions = "fuzzy,pum,tagfile"
+vim.opt.wildoptions:append("fuzzy")
 vim.opt.wildignore:append("*/__pycache__/*,*/node_modules/*")
 
 -- highlight 'number' column instead of indentation

@@ -19,6 +19,7 @@ local status = {
     message = nil,
     percentage = "",
     running = false,
+    id = nil,
 }
 
 local spin = function()
@@ -112,6 +113,16 @@ M.setup = function()
 
             status.running = value.kind ~= "end"
             if status.running then spin() end
+
+
+            -- TODO: :help LspProgress
+            status.id = vim.api.nvim_echo({ { status.message } }, false, {
+                id = status.id,
+                kind = "progress",
+                percent = value.percentage,
+                status = status.running and "running" or "success",
+                title = status.title,
+            })
         end,
     })
 end
