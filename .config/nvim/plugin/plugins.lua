@@ -66,7 +66,22 @@ now(function()
         end,
     })
 
-    require("me.lsp.status").setup()
+    -- require("me.lsp.status").setup()
+    vim.api.nvim_create_autocmd("LspProgress", {
+        group = augroup,
+        callback = function(args)
+            local val = args.data.params.value
+
+            vim.api.nvim_echo({{ val.message or "done" }}, false, {
+                source = "vim.lsp",
+                id = "LspProgress",
+                kind = "progress",
+                percent = val.percentage,
+                status = val.kind ~= "end" and "running" or "success",
+                title = val.title,
+            })
+        end,
+    })
 
     vim.lsp.config("*", {
         root_markers = { ".git" },
@@ -181,6 +196,7 @@ later(function()
     add("nvim-mini/mini-git")
     require("mini.git").setup()
 
+    -- TODO: replace with builtin package `nvim.undotree`
     add("mbbill/undotree")
     vim.g.undotree_HelpLine = 0
     vim.g.undotree_WindowLayout = 2

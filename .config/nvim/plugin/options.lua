@@ -40,10 +40,10 @@ vim.o.splitright = true
 
 -- less noise
 vim.o.laststatus = 3
-vim.o.showmode = false
-vim.o.shortmess = "aoOstTAIcCF"
 vim.o.showcmd = false
+vim.o.showmode = false
 vim.o.signcolumn = "yes:1"
+vim.o.shortmess = "ACFIOTacot"
 
 -- spaces between us
 vim.o.expandtab = true

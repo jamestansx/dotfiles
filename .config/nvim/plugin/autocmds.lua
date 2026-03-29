@@ -1,3 +1,5 @@
+-- TODO: https://codeberg.org/dnkl/foot/wiki#enabling-disabling-ime-when-entering-leaving-insert-mode-in-vim
+
 local augroup = require("me").augroup
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -30,20 +32,21 @@ autocmd("BufReadPre", {
     end,
 })
 
-autocmd("BufNewFile", {
-    group = augroup,
-    callback = function()
-        autocmd("BufWritePre", {
-            buffer = 0,
-            once = true,
-            callback = function(args)
-                -- ignore uri pattern
-                if args.match:match("^%w://") then return end
-
-                local file = vim.uv.fs_realpath(args.match) or args.match
-                local dir = vim.fn.fnamemodify(file, ":p:h")
-                vim.fn.mkdir(dir, "p")
-            end,
-        })
-    end,
-})
+-- NOTE: use ++p instead
+-- autocmd("BufNewFile", {
+--     group = augroup,
+--     callback = function()
+--         autocmd("BufWritePre", {
+--             buffer = 0,
+--             once = true,
+--             callback = function(args)
+--                 -- ignore uri pattern
+--                 if args.match:match("^%w://") then return end
+--
+--                 local file = vim.uv.fs_realpath(args.match) or args.match
+--                 local dir = vim.fn.fnamemodify(file, ":p:h")
+--                 vim.fn.mkdir(dir, "p")
+--             end,
+--         })
+--     end,
+-- })

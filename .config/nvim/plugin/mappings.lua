@@ -45,7 +45,7 @@ do -- smart jk (wrap)
         return function()
             local count = vim.v.count > 0
             local mode = vim.fn.mode(1):sub(1,2) == "no"
-            return (count or mode) and key or gkey
+            return (count or mode) and key or (vim.o.wrap and gkey or key)
         end
     end
 
