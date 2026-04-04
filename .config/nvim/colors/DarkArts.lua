@@ -9,20 +9,23 @@ end
 local hi = vim.api.nvim_set_hl
 
 local C = {
-    bg_float = "#0b0d0d",
-    bg = "#101313",
-    fg = "#b9b9c3",
+    bg_float   = "#0b0d0d",
+    bg_bar     = "#1c1e1e",
+    bg         = "#111113",
+    -- #0e1113
 
-    bg_bar = "#171b1b",
-    fg_bar = "#b6b6cb",
+    fg         = "#bebebe",
+    fg_bar     = "#c8c093",
 
-    vis = "#1d2b40",
+    vis        = "#1d2b40",
 
-    comment = "#7c7d78",
+    comment    = "#7c7d78",
     -- comment = "#b0b0b0",
-    green   = "#95cb82",
-    milk0   = "#d0a146",
-    milk    = "#d9b268",
+
+    blue       = "#96a6c8",
+    green      = "#95cb82",
+    milk0      = "#d0a146",
+    milk       = "#d9b268",
 
 }
 
@@ -34,6 +37,7 @@ hi(0, "Visual", { bg = C.vis })
 hi(0, "TabLine", { link = "StatusLine" })
 hi(0, "TabLineSel", { link = "Visual" })
 hi(0, "MatchParen", { fg = C.milk0, bold = true })
+hi(0, "Directory", { fg = C.blue })
 
 hi(0, "Pmenu",        { bg = C.bg_bar })
 hi(0, "PmenuSel",     { bg = C.vis })
@@ -52,6 +56,8 @@ hi(0, "Variable", {})
 hi(0, "Identifier", {})
 hi(0, "@variable", {})
 hi(0, "Special", {})
+hi(0, "Type", {})
+hi(0, "PreProc", {})
 
 -- (setq ef-dream-palette-overrides
 --       '((bg-main "#131015")
