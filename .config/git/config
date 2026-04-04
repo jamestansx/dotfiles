@@ -16,7 +16,7 @@
     indentHeuristic = true
     mnemonicPrefix = true
     renames = true
-    tool = nvimdiff
+    tool = nvim_difftool
 [fetch]
     all = true
     prune = true
@@ -32,7 +32,7 @@
     defaultBranch = main
 [merge]
     conflictStyle = zdiff3
-    tool = nvimdiff
+    tool = nvim_difftool
 [pull]
     ff = only
 [push]
@@ -50,4 +50,6 @@
     autoupdate = true
     enabled = true
 [color]
-	ui = auto
+    ui = auto
+[difftool "nvim_difftool"]
+    cmd = nvim -c \"packadd nvim.difftool\" -d \"$LOCAL\" \"$REMOTE\"
