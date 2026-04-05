@@ -1,10 +1,11 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
-ratio = [1, 5, 4]
+ratio = [0, 2, 1]
 show_hidden = true
-linemode = "mtime"
+linemode = "mtime" # TODO: https://yazi-rs.github.io/docs/configuration/yazi#mgr.linemode
 
 [preview]
+tab_size = 4
+image_filter = "nearest"
 image_quality = 50
-sixel_fraction = 20
