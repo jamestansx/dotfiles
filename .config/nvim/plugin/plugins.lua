@@ -52,53 +52,53 @@ now(function()
 end)
 
 -- lspconfig
-now(function()
-    vim.api.nvim_create_autocmd("LspAttach", {
-        group = augroup,
-        callback = function(args)
-            local buf = args.buf
-
-            vim.keymap.set("n", "grq", vim.diagnostic.setqflist, { buffer = buf })
-            vim.keymap.set("n", "<bs>", function()
-                local enabled = not vim.lsp.inlay_hint.is_enabled()
-                vim.lsp.inlay_hint.enable(enabled)
-            end, { buffer = buf })
-        end,
-    })
-
-    -- require("me.lsp.status").setup()
-    vim.api.nvim_create_autocmd("LspProgress", {
-        group = augroup,
-        callback = function(args)
-            local val = args.data.params.value
-
-            vim.api.nvim_echo({{ val.message or "done" }}, false, {
-                source = "vim.lsp",
-                id = "LspProgress",
-                kind = "progress",
-                percent = val.percentage,
-                status = val.kind ~= "end" and "running" or "success",
-                title = val.title,
-            })
-        end,
-    })
-
-    vim.lsp.config("*", {
-        root_markers = { ".git" },
-    })
-
-    vim.lsp.enable({
-        "rust_analyzer",
-        "tsserver",
-        "dartls",
-        "tinymist",
-    })
-
-    -- vim.lsp.log.set_format_func(vim.inspect)
-    later(function()
-        vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
-    end)
-end)
+-- now(function()
+--     vim.api.nvim_create_autocmd("LspAttach", {
+--         group = augroup,
+--         callback = function(args)
+--             local buf = args.buf
+--
+--             vim.keymap.set("n", "grq", vim.diagnostic.setqflist, { buffer = buf })
+--             vim.keymap.set("n", "<bs>", function()
+--                 local enabled = not vim.lsp.inlay_hint.is_enabled()
+--                 vim.lsp.inlay_hint.enable(enabled)
+--             end, { buffer = buf })
+--         end,
+--     })
+--
+--     -- require("me.lsp.status").setup()
+--     vim.api.nvim_create_autocmd("LspProgress", {
+--         group = augroup,
+--         callback = function(args)
+--             local val = args.data.params.value
+--
+--             vim.api.nvim_echo({{ val.message or "done" }}, false, {
+--                 source = "vim.lsp",
+--                 id = "LspProgress",
+--                 kind = "progress",
+--                 percent = val.percentage,
+--                 status = val.kind ~= "end" and "running" or "success",
+--                 title = val.title,
+--             })
+--         end,
+--     })
+--
+--     vim.lsp.config("*", {
+--         root_markers = { ".git" },
+--     })
+--
+--     vim.lsp.enable({
+--         "rust_analyzer",
+--         "tsserver",
+--         "dartls",
+--         "tinymist",
+--     })
+--
+--     -- vim.lsp.log.set_format_func(vim.inspect)
+--     later(function()
+--         vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
+--     end)
+-- end)
 
 -- auto-completion
 later(function()
