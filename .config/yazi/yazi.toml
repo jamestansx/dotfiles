@@ -1,7 +1,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
-ratio = [0, 2, 1]
+ratio = [0, 4, 3]
 show_hidden = true
 linemode = "mtime" # TODO: https://yazi-rs.github.io/docs/configuration/yazi#mgr.linemode
 
