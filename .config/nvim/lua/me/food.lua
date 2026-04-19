@@ -1,0 +1,43 @@
+--- *food.nvim*
+--- > 'foo' + 'd'irvish
+---
+--- A vim-dirvish inspired file explorer in neovim.
+---
+--- Inspiration from oil.nvim, vim-dirvish and mini.files.
+---
+--- Planning:
+--- 1.  support cross-directory actions like oil.nvim/mini.files (?)
+--- 2.  should be simple & safe (do not simply modify filesystem)
+--- 3.  support tree-view expansion (see detail below)
+--- 4.  each line shows the full path but conceal the parent directory
+--- 5.  vim.g style option
+--- 6.  able to spawn terminal to do complex operation
+--- 7.  respect vim options for sorting, etc (like suffixes, wildignore)
+--- 8.  preview file mapping
+--- 9.  it should be FAST!
+--- 10. show file info with extmark
+--- 11. use as default explorer (replace netrw)
+---
+---
+--- File Manipulation:
+--- - create
+--- - delete
+--- - rename
+--- - copy
+--- - move
+--- * should be able to support single/multiple/nested
+---
+--- Tree-view Expansion: (useful?)
+--- Can trigger to expand the child directory of the selected directory.
+--- The branch is annotated with extmark, example:
+---
+---           path/to/a
+--- extmark -> |_ b.rs
+---           |_ c.rs
+---
+--- :help vim.uv.fs_scandir()
+--- :help vim.api.nvim_buf_set_extmark() virt_text_pos='inline'
+
+local M = {}
+
+return M
