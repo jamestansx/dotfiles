@@ -2,7 +2,7 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local augroup = require("me").augroup
 
 later(function()
-    require("vim._core.ui2").enable({})
+    require("vim._core.ui2").enable()
     vim.cmd("packadd! cfilter")
     vim.cmd("packadd! termdebug")
 end)
@@ -102,7 +102,7 @@ end)
 
 -- auto-completion
 later(function()
-    add({ source = "Saghen/blink.cmp", checkout = "v1.10.1" })
+    add({ source = "Saghen/blink.cmp", checkout = "v1.10.2" })
 
     require("blink.cmp").setup({
         keymap = {
